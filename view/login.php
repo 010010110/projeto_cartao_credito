@@ -16,7 +16,7 @@
             <!-- <?php if($err) : ?>
               <div>Usuario ou Senha invalidos</div>
             <?php endif; ?> -->
-            <input type="text" name="user" id="user" placeholder="User Name" required>
+            <input type="text" name="user" id="user" placeholder="User Name" autofocus required>
             <input type="password" name="password" id="password" placeholder="Password" required><br>
             <button>Login</button>
         </form>
