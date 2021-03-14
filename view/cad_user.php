@@ -18,7 +18,7 @@
                 <input type="text" name="name" id="name" placeholder="Nome" autofocus required>
                 <input type="text" name="cpf" id="cpf" placeholder="CPF (ex: nnn.nnn.nnn-nn)" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" required>
                 <input type="tel" name="tel" id="tel" placeholder="Tel (ex: (xx) xxxx-xxxx))" pattern = "\([0-9]{2}\)[\s][0-9]{4}-[0-9]{4}" required>
-                <input type="number" name="name" id="name" placeholder="Renda Mensal" pattern="\d{1,3}(.\d{3})*,\d{2}" required>
+                <input type="number" name="renda" id="renda" placeholder="Renda Mensal"  required>
                 <input type="password" name="password" id="password" placeholder="Password (min 8)" minlength="8" required><br>
             </fieldset>
             <fieldset>
@@ -31,11 +31,9 @@
             </fieldset>
             <button>Solicite seu cartao</button>
         </form>
-        
     </main>
     <footer>
       Empresa de Cartao de credito
     </footer>
-
 </body>
 </html>
