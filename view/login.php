@@ -21,6 +21,7 @@
             <button>Login</button>
         </form>
         <nav>
+            <a href="../view/cad_user.php">solicitar cartao de credito</a><br>
             <a href="../view/situacao.php">visualisar situacao pedido</a>
         </nav>
         
