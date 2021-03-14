@@ -20,6 +20,10 @@
             <input type="password" name="password" id="password" placeholder="Password" required><br>
             <button>Login</button>
         </form>
+        <nav>
+            <a href="../view/situacao.php">visualisar situacao pedido</a>
+        </nav>
+        
     </main>
     <footer>
       Empresa de Cartao de credito
