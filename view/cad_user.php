@@ -10,7 +10,7 @@
 <body>
     <header>
         <h1>Cadastre-se</h1>
-        <p>Solicite seu Cartao de credito<br>Preencha os dados e envia uma solicitacao</p>
+        <p>Solicite seu Cartao de credito<br>Preencha os dados e envia uma solicitacao </p>
     </header>
     <main>
         <form method="POST" action="../model/cad_user.php">
@@ -28,6 +28,9 @@
                 <input type="text" name="cidade" id="cidade" placeholder="Cidade" required>
                 <input type="text" name="uf" id="uf" placeholder="UF" maxlength="2" required>
                 <input type="text" name="pais" id="pais" placeholder="Pais" required>
+
+                <input type="hidden" name="situacao" id="situacao" value="false">
+
             </fieldset>
             <button>Solicite seu cartao</button>
         </form>
