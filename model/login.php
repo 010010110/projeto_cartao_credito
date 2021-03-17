@@ -1,22 +1,31 @@
 <?php
 
+    require_once('../controller/connect.php');
 
     //pegras credenciais
     $user = $_POST['user'] ?? '';
-    $password = $_POST['password'] ?? '';
+    $senha = $_POST['password'] ?? '';
+    $situacao = 1;
     $err  = false;
 
     //inicialzia session
-    session_start(); // a12h4ihi4h63h hash
-
+    session_start();
+        
+    $sth = $pdo->prepare('SELECT nome, senha, situacao FROM user WHERE (nome=:user AND senha=:senha AND situacao=:situacao)');
+    $result = $sth->execute(array(':user' => $user, ':senha' => $senha, ':situacao' => $situacao));
+    $result = $sth->fetch(PDO::FETCH_OBJ);
+    //var_dump($result) ;
     //checar credenciais OK
-    if($user == 'admin' && $password == '123456'){
+    if($result == true){
         $_SESSION['logado'] = true;
-        $_SESSION['user'] = $user;
-
+        $_SESSION['user'] = $_POST['user'];
         header('Location: ../view/main.php');
-    }else if(!empty($_POST)){
+
+    }else if($result == false){
         $err = true;
+        echo  "<script>alert('Login Invalido!');
+                            location.href='../view/login.php';
+                     </script>";
     }
 
     //checar se user ja ta logado
