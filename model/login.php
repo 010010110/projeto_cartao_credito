@@ -4,7 +4,7 @@
 
     //pegras credenciais
     $user = $_POST['user'] ?? '';
-    $senha = $_POST['password'] ?? '';
+    $senha = md5($_POST['password']) ?? '';
     $situacao = 1;
     $err  = false;
 

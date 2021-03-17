@@ -2,7 +2,7 @@
     require_once('../controller/connect.php');
 
     $nome = $_POST['name'];
-    $senha = $_POST['password'];
+    $senha = md5($_POST['password']);
     $cpf = $_POST['cpf'];
     $tel = $_POST['tel'];
     $renda = $_POST['renda'];
