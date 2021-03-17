@@ -37,7 +37,7 @@
             exit;
         }else{
             echo  "<script>alert('Solicitacao enviada! Aconpanhe a aituacao em localhost/login/view/situacao.php');
-                         window.location='http://localhost/Code/login/view/login.php';
+                            location.href='../view/login.php';
                      </script>";
         }
 

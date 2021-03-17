@@ -11,14 +11,14 @@
 
     if (!$result){
         echo  "<script>alert('Cadastro Nao Encontrado!');
-                    window.location='http://localhost/Code/cartao_credito/view/login.php';
+                    location.href='../view/login.php';
                 </script>";
     }else if($result['situacao'] == 1){
         echo  "<script>alert('Cadastro Aprovado! faca login para saber mais');
-                    window.location='http://localhost/Code/cartao_credito/view/login.php';
+                    location.href='../view/login.php';
                 </script>";
     }else {
         echo  "<script>alert('Cadastro nao Aprovado!');
-                    window.location='http://localhost/Code/cartao_credito/view/login.php';
+                    location.href='../view/login.php';
                 </script>";
     }
