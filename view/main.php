@@ -19,6 +19,11 @@
         <h1>Main:</h1>
         <p>welcome, <?= $_SESSION['user']?></p>
         <nav>
+            <a href="#">Faturas Pagas</a>
+            <a href="#">Faturas Fechadas</a>
+            <a href="#">Fatura Aberta</a>
+            <a href="update_cad.php">Atualizar Cadastro</a>
+            <a href="update_endereco.php">Atualizar Endereco</a>
             <a href="../model/logout.php">Sair</a>
         </nav>
     </header>
