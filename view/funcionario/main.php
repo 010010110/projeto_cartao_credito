@@ -19,7 +19,7 @@
         <h1>Funcionario Main:</h1>
         <p>welcome, <?= $_SESSION['func']?></p>
         <nav>
-            <a href="#">Pedidos de Cadastros</a>
+            <a href="../../model/funcionario/pedidos_cad.php">Pedidos de Cadastros</a>
             <a href="../../model/logout.php">Sair</a>
             <a href="#">#</a>
         </nav>
