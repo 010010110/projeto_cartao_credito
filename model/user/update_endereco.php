@@ -1,5 +1,6 @@
 <?php
     require_once('../../controller/connect.php');
+    $pdo = Conexao::get();
 
     session_start();
 

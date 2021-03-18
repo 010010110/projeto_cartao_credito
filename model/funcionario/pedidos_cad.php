@@ -1,7 +1,5 @@
 <?php
 
-    
-
     session_start();
     if(empty($_SESSION['login_func']) || $_SESSION['login_func'] == false){
         header('Location: login.php');
@@ -9,6 +7,7 @@
 
     function verifica_pedidos(){
         require_once('../../controller/connect.php');
+        $pdo = Conexao::get();
         $situacao = "0";
         $result = $pdo->prepare('SELECT nome, telefone, cpf, renda_mensal, logradouro, bairro, cidade, uf, pais FROM user WHERE situacao=:situacao');
         $result->bindValue(':situacao', $situacao);
@@ -54,7 +53,8 @@
         </tr>
     </thead>
         <tbody>
-        <?php $result = verifica_pedidos();
+        <?php 
+            $result = verifica_pedidos();
             foreach ($result as $key => $value) {
                 echo "<tr>";
                  foreach ($result[$key] as $cedula){

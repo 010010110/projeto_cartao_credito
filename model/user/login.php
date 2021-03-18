@@ -1,6 +1,7 @@
 <?php
 
     require_once('../../controller/connect.php');
+    $pdo = Conexao::get();
 
     //pegras credenciais
     $user = $_POST['user'] ?? '';

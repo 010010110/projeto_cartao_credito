@@ -1,5 +1,6 @@
 <?php
     require_once('../../controller/connect.php');
+    $pdo = Conexao::get();
 
     $nome = $_POST['name'];
     $senha = md5($_POST['password']);
