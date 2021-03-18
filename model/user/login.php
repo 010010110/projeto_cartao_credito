@@ -1,6 +1,6 @@
 <?php
 
-    require_once('../controller/connect.php');
+    require_once('../../controller/connect.php');
 
     //pegras credenciais
     $user = $_POST['user'] ?? '';
@@ -19,17 +19,17 @@
     if($result == true){
         $_SESSION['logado'] = true;
         $_SESSION['user'] = $_POST['user'];
-        header('Location: ../view/main.php');
+        header('Location: ../../view/user/main.php');
 
     }else if($result == false){
         $err = true;
         echo  "<script>alert('Login Invalido!');
-                    location.href='../view/login.php';
+                    location.href='../../view/user/login.php';
                </script>";
     }
 
     //checar se user ja ta logado
 
     if(!empty($_SESSION['logado']) && $_SESSION['logado']){
-        header('Location: ../view/main.php');
+        header('Location: ../../view/user/main.php');
     }

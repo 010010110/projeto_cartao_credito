@@ -13,7 +13,7 @@
         <p>Solicite seu Cartao de credito<br>Preencha os dados e envia uma solicitacao </p>
     </header>
     <main>
-        <form method="POST" action="../model/cad_user.php">
+        <form method="POST" action="../../model/user/cad_user.php">
            <fieldset>
                 <input type="text" name="name" id="name" placeholder="Nome" autofocus required>
                 <input type="text" name="cpf" id="cpf" placeholder="CPF (ex: nnn.nnn.nnn-nn)" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" required>

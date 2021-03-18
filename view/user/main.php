@@ -24,7 +24,7 @@
             <a href="#">Fatura Aberta</a>
             <a href="update_cad.php">Atualizar Cadastro</a>
             <a href="update_endereco.php">Atualizar Endereco</a>
-            <a href="../model/logout.php">Sair</a>
+            <a href="../../model/logout.php">Sair</a>
         </nav>
     </header>
     <main>

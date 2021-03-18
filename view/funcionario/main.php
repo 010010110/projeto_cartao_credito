@@ -20,7 +20,7 @@
         <p>welcome, <?= $_SESSION['func']?></p>
         <nav>
             <a href="#">Pedidos de Cadastros</a>
-            <a href="#">#</a>
+            <a href="../../model/logout.php">Sair</a>
             <a href="#">#</a>
         </nav>
     </header>

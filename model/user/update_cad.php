@@ -1,5 +1,5 @@
 <?php
-    require_once('../controller/connect.php');
+    require_once('../../controller/connect.php');
 
     session_start();
 
@@ -16,5 +16,5 @@
     'senha' => $senha
     ));
     echo    "<script>alert('Atualizacao Realizada!');
-                location.href='../view/main.php';
+                location.href='../../view/user/main.php';
             </script>";

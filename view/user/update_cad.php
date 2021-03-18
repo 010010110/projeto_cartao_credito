@@ -20,7 +20,7 @@
         <p>Atualize seu Cadastro</p>
     </header>
     <main>
-        <form method="POST" action="../model/update_cad.php">
+        <form method="POST" action="../../model/user/update_cad.php">
            <fieldset>
                 <input type="tel" name="tel" id="tel" placeholder="Tel (ex: (xx) xxxx-xxxx))" pattern = "\([0-9]{2}\)[\s][0-9]{4}-[0-9]{4}">
                 <input type="number" name="renda" id="renda" placeholder="Renda Mensal">

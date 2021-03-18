@@ -12,7 +12,7 @@
     <h3>Verificar Situacao de Pedido de Cartao</h3>
     </header>
     <main>
-        <form method="POST" action="../model/situacao.php">
+        <form method="POST" action="../../model/user/situacao.php">
             <fildset>
                 <input type="text" name="cpf" id="cpf" placeholder="CPF (ex: nnn.nnn.nnn-nn)" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" size="40" required><br>
                 <button>Verificar Situacao</button>

@@ -1,5 +1,5 @@
 <?php
-    require_once('../controller/connect.php');
+    require_once('../../controller/connect.php');
 
     $cpf = $_POST['cpf'];
     
@@ -11,14 +11,14 @@
 
     if (!$result){
         echo    "<script>alert('Cadastro Nao Encontrado!');
-                    location.href='../view/login.php';
+                    location.href='../../view/user/login.php';
                 </script>";
     }else if($result['situacao'] == 1){
         echo    "<script>alert('Cadastro Aprovado! faca login para saber mais');
-                    location.href='../view/login.php';
+                    location.href='../../view/user/login.php';
                 </script>";
     }else {
         echo    "<script>alert('Cadastro nao Aprovado!');
-                    location.href='../view/login.php';
+                    location.href='../../view/user/login.php';
                 </script>";
     }

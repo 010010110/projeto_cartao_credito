@@ -10,18 +10,19 @@
 <body>
     <header>
         <h1> Login:</h1>
+        <nav>
+            <a href="../../view/funcionario/login.php">login como funcionario</a>
+            <a href="../../view/user/cad_user.php">solicitar cartao de credito</a>
+            <a href="../../view/user/situacao.php">visualisar situacao pedido</a>
+        </nav>
     </header>
     <main>
-        <form method="POST" action="../model/login.php">
+        <form method="POST" action="../../model/user/login.php">
             <input type="text" name="user" id="user" placeholder="User Name" autofocus required>
             <input type="password" name="password" id="password" placeholder="Password" required><br>
             <button>Login</button>
         </form>
-        <nav>
-            <a href="../view/cad_user.php">solicitar cartao de credito</a><br>
-            <a href="../view/situacao.php">visualisar situacao pedido</a>
-        </nav>
-        
+
     </main>
     <footer>
       Empresa de Cartao de credito

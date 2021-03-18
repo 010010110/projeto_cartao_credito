@@ -20,7 +20,7 @@
         <p>Atualize seu Endereco</p>
     </header>
     <main>
-        <form method="POST" action="../model/update_endereco.php">
+        <form method="POST" action="../../model/user/update_endereco.php">
             <fieldset>
                 <input type="text" name="logradouro" id="logradouro" placeholder="Rua">
                 <input type="number" name="num" id="num" placeholder="Numero">
