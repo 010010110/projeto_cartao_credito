@@ -36,9 +36,9 @@
             var_dump( $stmt->errorInfo() );
             exit;
         }else{
-            echo  "<script>alert('Solicitacao enviada! Aconpanhe a aituacao em localhost/login/view/situacao.php');
-                            location.href='../view/login.php';
-                     </script>";
+            echo "<script>alert('Solicitacao enviada! Aconpanhe a aituacao em localhost/login/view/situacao.php');
+                    location.href='../view/login.php';
+                  </script>";
         }
 
     }catch(PDOException $e) {

@@ -10,15 +10,15 @@
     $result = $sth->fetch();
 
     if (!$result){
-        echo  "<script>alert('Cadastro Nao Encontrado!');
+        echo    "<script>alert('Cadastro Nao Encontrado!');
                     location.href='../view/login.php';
                 </script>";
     }else if($result['situacao'] == 1){
-        echo  "<script>alert('Cadastro Aprovado! faca login para saber mais');
+        echo    "<script>alert('Cadastro Aprovado! faca login para saber mais');
                     location.href='../view/login.php';
                 </script>";
     }else {
-        echo  "<script>alert('Cadastro nao Aprovado!');
+        echo    "<script>alert('Cadastro nao Aprovado!');
                     location.href='../view/login.php';
                 </script>";
     }

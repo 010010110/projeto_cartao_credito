@@ -24,8 +24,8 @@
     }else if($result == false){
         $err = true;
         echo  "<script>alert('Login Invalido!');
-                            location.href='../view/login.php';
-                     </script>";
+                    location.href='../view/login.php';
+               </script>";
     }
 
     //checar se user ja ta logado
