@@ -16,7 +16,7 @@
     //checar credenciais OK
     if($result == true){
         $_SESSION['login_func'] = true;
-        $_SESSION['func'] = $_POST['func'];
+        $_SESSION['func'] = $_POST['funcionario'];
         header('Location: ../../view/funcionario/main.php');
 
     }else if($result == false){
