@@ -16,17 +16,17 @@ if (empty($_SESSION['logado']) || $_SESSION['logado'] == false) {
 </head>
 <body>
 <header>
-    <h1>Main:</h1>
-    <p>welcome, <?= $_SESSION['user'] ?></p>
+    <h1>Empresa</h1>
+    <p>Olá <?= $_SESSION['user'] ?></p>
     <nav>
         <a href="../model/logout.php">Sair</a>
     </nav>
 </header>
 <main>
-    pagina main
+    <h2>Bem vindo!</h2>
 </main>
 <footer>
-    Empresa de Cartao de credito
+    Empresa de Cartão de crédito
 </footer>
 
 </body>
