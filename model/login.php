@@ -10,7 +10,7 @@ session_start(); // a12h4ihi4h63h hash
 //checar credenciais OK
 if ($user == 'admin' && $password == '123456') {
     $_SESSION['logado'] = true;
-    $_SESSION['user'] = 'SH33P';
+    $_SESSION['user'] = $user;
 
     header('Location: ../view/main.php');
 } else if (!empty($_POST)) {
