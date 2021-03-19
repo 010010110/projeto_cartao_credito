@@ -1,8 +1,8 @@
 <?php
-    session_start();
-    if(empty($_SESSION['logado']) || $_SESSION['logado'] == false){
-        header('Location: login.php');
-    }
+session_start();
+if (empty($_SESSION['logado']) || $_SESSION['logado'] == false) {
+    header('Location: login.php');
+}
 ?>
 
 <!DOCTYPE html>
@@ -15,19 +15,19 @@
     <title>login</title>
 </head>
 <body>
-    <header>
-        <h1>Main:</h1>
-        <p>welcome, <?= $_SESSION['user']?></p>
-        <nav>
-            <a href="../model/logout.php">Sair</a>
-        </nav>
-    </header>
-    <main>
-        pagina main
-    </main>
-    <footer>
-      Empresa de Cartao de credito
-    </footer>
+<header>
+    <h1>Main:</h1>
+    <p>welcome, <?= $_SESSION['user'] ?></p>
+    <nav>
+        <a href="../model/logout.php">Sair</a>
+    </nav>
+</header>
+<main>
+    pagina main
+</main>
+<footer>
+    Empresa de Cartao de credito
+</footer>
 
 </body>
 </html>
