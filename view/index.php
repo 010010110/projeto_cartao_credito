@@ -18,15 +18,15 @@
                 <form method="POST" action="../model/login.php">
                     <h5 class="card-title">Entrar na sua conta</h5>
                     <div class="mb-3 row">
-                        <label for="user" class="col-sm-2 col-form-label">Usuário:</label>
+                        <label for="email" class="col-sm-2 col-form-label">Usuário:</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" name="user" id="user">
+                            <input type="email" class="form-control" name="email" id="email">
                         </div>
                     </div>
                     <div class="mb-3 row">
-                        <label for="password" class="col-sm-2 col-form-label">Senha:</label>
+                        <label for="senha" class="col-sm-2 col-form-label">Senha:</label>
                         <div class="col-sm-10">
-                            <input type="password" class="form-control" name="password" id="password">
+                            <input type="password" class="form-control" name="senha" id="senha">
                         </div>
                     </div>
                     <input type="submit" class="btn btn-primary w-25" value="Entrar">
