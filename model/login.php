@@ -1,19 +1,26 @@
 <?php
+require_once('../utils/utils.php');
 require_once('../controller/connect.php');
 
 global $pdo;
 
-$email = $_POST['email'];
-$senha = $_POST['senha'];
+$data = file_get_contents('php://input');
+$payload = json_decode($data, TRUE);
 
-$st = $pdo->prepare("SELECT email FROM user WHERE email = :email");
-$st->bindParam(':email', $email);
-$st->execute();
+if (!array_key_exists('email', $payload)) {
+    Utils::json(['message' => "Parâmetro 'email' não informado", 'error' => true]);
 
-if (!$st->rowCount()) {
-    echo file_get_contents("./erros/erro_usuario.php");
     exit();
 }
+
+if (!array_key_exists('senha', $payload)) {
+    Utils::json(['message' => "Parâmetro 'senha' não informado", 'error' => true]);
+
+    exit();
+}
+
+$email = $payload['email'];
+$senha = $payload['senha'];
 
 $st = $pdo->prepare("SELECT email FROM user WHERE email = :email AND senha = :senha");
 $st->bindParam(':email', $email);
@@ -21,7 +28,8 @@ $st->bindParam(':senha', $senha);
 $st->execute();
 
 if (!$st->rowCount()) {
-    echo file_get_contents("./erros/erro_senha.php");
+    Utils::json(['message' => 'Usuário ou senha inválidos', 'error' => true]);
+
     exit();
 }
 
@@ -30,7 +38,8 @@ $st->bindParam(':email', $email);
 $st->execute();
 
 if (!$st->rowCount()) {
-    echo file_get_contents("./erros/erro_status.php");
+    Utils::json(['message' => 'Sua conta ainda não foi ativada', 'error' => true]);
+
     exit();
 }
 
@@ -38,4 +47,4 @@ session_start();
 $_SESSION['logado'] = true;
 $_SESSION['user'] = $email;
 
-header('Location: ../view/user/main.php');
+Utils::json(['message' => 'Usuário autenticado com sucesso']);
