@@ -44,7 +44,7 @@ if (!$st->rowCount()) {
 }
 
 session_start();
-$_SESSION['logado'] = true;
+$_SESSION['login'] = true;
 $_SESSION['user'] = $email;
 
 Utils::json(['message' => 'Usuário autenticado com sucesso']);
