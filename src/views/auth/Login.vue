@@ -59,7 +59,10 @@ export default class Login extends Vue {
     private senha: string = '';
 
     private submit(): void {
-        ApiService.login(this.email, this.senha);
+        ApiService.login(this.email, this.senha)
+            .catch((error: Error) =>
+                this.$root.$emit('snackbar', error.message, 3000, 'error')
+            );
     }
 
 }
