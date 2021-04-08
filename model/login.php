@@ -33,7 +33,7 @@ if (!$st->rowCount()) {
     exit();
 }
 
-$st = $pdo->prepare("SELECT email from user WHERE email = :email AND status = 'A'");
+$st = $pdo->prepare("SELECT email, tipo from user WHERE email = :email AND status = 'A'");
 $st->bindParam(':email', $email);
 $st->execute();
 
@@ -43,8 +43,11 @@ if (!$st->rowCount()) {
     exit();
 }
 
+$user = $st->fetch(PDO::FETCH_ASSOC);
+
 session_start();
 $_SESSION['login'] = true;
-$_SESSION['user'] = $email;
+$_SESSION['user'] = $user['email'];
+$_SESSION['tipo'] = $user['tipo'];
 
 Utils::json(['message' => 'Usuário autenticado com sucesso']);
