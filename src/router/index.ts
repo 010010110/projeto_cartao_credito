@@ -31,6 +31,11 @@ const routes: Array<RouteConfig> = [
                 path: 'login',
                 name: 'Login',
                 component: Login
+            },
+            {
+                path: 'cadastro',
+                name: 'Cadastro',
+                component: Cadastro
             }
         ]
     }

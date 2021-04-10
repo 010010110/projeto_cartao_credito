@@ -19,4 +19,25 @@ export class ApiService {
         return axios.post('/model/login.php', { email, senha });
     }
 
+    public static cadastrar(cadastro: Cadastro) {
+        return axios.post('/model/cadastro.php', { ...cadastro });
+    }
+
+}
+
+export class Cadastro {
+
+    private email: string = '';
+    private senha: string = '';
+
+    private tipo: string = 'F';
+    private documento: string = '';
+
+    private nome: string = '';
+    private telefone: string = '';
+    private renda: number = 0;
+
+    private cep: string = '';
+    private numero: string = '';
+
 }
