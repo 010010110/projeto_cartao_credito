@@ -19,9 +19,9 @@ export default class App extends Vue {
     private snackbar: boolean = false;
     private overlay: boolean = false;
 
-    private message!: string;
+    private message: string = '';
     private timeout: number = 3000;
-    private color: string = 'primary';
+    private color: string = 'success';
 
     private mounted(): void {
         this.$root.$on('snackbar', (message: string, timeout?: number, color?: string) => {
