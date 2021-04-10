@@ -1,11 +1,14 @@
 <?php
-session_start();
-if (empty($_SESSION['login']) || $_SESSION['login'] == false) {
-    header('Location: login.php');
-}
 
+require_once('../utils/session_util.php');
 require_once('../utils/utils.php');
 require_once('../controller/connect.php');
+
+if($_SESSION['tipo'] == "U"){
+    Utils::json(['message' => "Sem permissão de acesso!", 'error' => true]);
+    http_response_code(403);
+    exit();
+}
 
 global $pdo;
 

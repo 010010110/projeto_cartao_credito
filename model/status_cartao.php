@@ -1,13 +1,9 @@
 <?php
 
 require_once('../utils/utils.php');
-
-session_start();
-if (empty($_SESSION['login']) || $_SESSION['login'] == false) {
-    header('Location: login.php');
-}
-
+require_once('../utils/session_util.php');
 require_once('../controller/connect.php');
+
 global $pdo;
 
 $data = file_get_contents('php://input');

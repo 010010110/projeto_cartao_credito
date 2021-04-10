@@ -1,6 +1,7 @@
 <?php
 require_once('../utils/utils.php');
 require_once('../controller/connect.php');
+require_once('../utils/session_util.php');
 
 global $pdo;
 
