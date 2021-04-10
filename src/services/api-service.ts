@@ -1,7 +1,8 @@
 import Axios from 'axios'
 
 const axios = Axios.create({
-    baseURL: process.env['VUE_APP_API_ENDPOINT']
+    baseURL: process.env['VUE_APP_API_ENDPOINT'],
+    withCredentials: true
 });
 
 axios.interceptors.response.use(response => {
