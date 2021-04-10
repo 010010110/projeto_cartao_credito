@@ -1,6 +1,20 @@
 <template>
     <v-main>
-        <router-view />
+        <v-container fluid>
+            <v-row class="align-center justify-center">
+                <v-spacer></v-spacer>
+                <v-col cols="4">
+                    <v-img
+                        src="https://raw.githubusercontent.com/010010110/ongs/master/frontendreact/src/assets/heroes.png"
+                    ></v-img>
+                </v-col>
+                <v-spacer></v-spacer>
+                <v-col cols="4">
+                    <router-view />
+                </v-col>
+                <v-spacer></v-spacer>
+            </v-row>
+        </v-container>
     </v-main>
 </template>
 
@@ -19,3 +33,13 @@ export default class Auth extends Vue {
 
 }
 </script>
+
+<style lang="scss" scoped>
+div.container {
+    height: 100%;
+
+    div.row {
+        height: 100%;
+    }
+}
+</style>
