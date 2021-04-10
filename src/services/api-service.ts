@@ -16,11 +16,15 @@ axios.interceptors.response.use(response => {
 export class ApiService {
 
     public static login(email: string, senha: string) {
-        return axios.post('/model/login.php', { email, senha });
+        return axios.post('/api/user/login.php', { email, senha });
     }
 
     public static cadastrar(cadastro: Cadastro) {
-        return axios.post('/model/cadastro.php', { ...cadastro });
+        return axios.post('/api/user/cadastro.php', { ...cadastro });
+    }
+
+    public static getUser() {
+        return axios.get('/api/user/me.php');
     }
 
 }
@@ -39,5 +43,37 @@ export class Cadastro {
 
     private cep: string = '';
     private numero: string = '';
+
+}
+
+export interface Usuario {
+
+    id: string;
+
+    tipo: string;
+
+    status: string;
+
+    email: string;
+
+    senha: string;
+
+    renda_mensal: string;
+
+    limite: string;
+
+    pessoa_id: string;
+
+    nome: string;
+
+    documento: string;
+
+    telefone: string;
+
+    endereco_id: string;
+
+    cep: string;
+
+    numero: string;
 
 }
