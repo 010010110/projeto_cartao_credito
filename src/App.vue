@@ -1,14 +1,10 @@
 <template>
     <v-app>
-        <v-snackbar
-            v-model="snackbar"
-            :timeout="timeout"
-            :color="color"
-            absolute
-            top
-        >
-            {{ message }}
-        </v-snackbar>
+        <v-snackbar v-model="snackbar" :timeout="timeout" :color="color" absolute top>{{ message }}</v-snackbar>
+        <v-overlay v-model="overlay">
+            <v-progress-circular indeterminate size="64"></v-progress-circular>
+        </v-overlay>
+
         <router-view />
     </v-app>
 </template>
@@ -21,6 +17,7 @@ import Component from 'vue-class-component'
 export default class App extends Vue {
 
     private snackbar: boolean = false;
+    private overlay: boolean = false;
 
     private message!: string;
     private timeout: number = 3000;
@@ -34,6 +31,8 @@ export default class App extends Vue {
 
             this.snackbar = true;
         });
+
+        this.$root.$on('overlay', (value: boolean) => this.overlay = value);
     }
 
 }
