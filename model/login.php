@@ -1,24 +1,13 @@
 <?php
 require_once('../utils/utils.php');
 require_once('../controller/connect.php');
-require_once('../utils/session_util.php');
 
 global $pdo;
 
 $data = file_get_contents('php://input');
 $payload = json_decode($data, TRUE);
 
-if (!array_key_exists('email', $payload)) {
-    Utils::json(['message' => "Parâmetro 'email' não informado", 'error' => true]);
-
-    exit();
-}
-
-if (!array_key_exists('senha', $payload)) {
-    Utils::json(['message' => "Parâmetro 'senha' não informado", 'error' => true]);
-
-    exit();
-}
+Utils::validar(['email', 'senha'], $payload);
 
 $email = $payload['email'];
 $senha = $payload['senha'];

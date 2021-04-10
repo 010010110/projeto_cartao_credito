@@ -1,22 +1,26 @@
 <?php
-
-require_once('../controller/connect.php');
 require_once('../utils/utils.php');
-require_once('../utils/session_util.php');
+require_once('../controller/connect.php');
 
 global $pdo;
 
-$nome = $_POST['nome'];
-$tipo = $_POST['tipo'];
-$documento = $_POST['documento'];
-$telefone = $_POST['telefone'];
-$renda_mensal = $_POST['renda_mensal'];
+$data = file_get_contents('php://input');
+$payload = json_decode($data, TRUE);
 
-$cep = $_POST['cep'];
-$numero = $_POST['numero'];
+Utils::validar(['email', 'senha', 'tipo', 'documento', 'nome', 'telefone', 'renda', 'cep', 'numero'], $payload);
 
-$email = $_POST['email'];
-$senha = $_POST['senha'];
+$email = $payload['email'];
+$senha = $payload['senha'];
+
+$tipo = $payload['tipo'];
+$documento = $payload['documento'];
+
+$nome = $payload['nome'];
+$telefone = $payload['telefone'];
+$renda_mensal = $payload['renda'];
+
+$cep = $payload['cep'];
+$numero = $payload['numero'];
 
 $st = $pdo->prepare("INSERT INTO endereco(cep, numero) VALUES(:cep, :numero);");
 $st->bindParam(':cep', $cep);
@@ -45,3 +49,5 @@ $st->bindParam(':limite', $limite);
 $st->bindParam(':pessoa_id', $pessoa_id);
 
 $st->execute();
+
+Utils::json(['message' => 'Cadastro realizado com sucesso']);
