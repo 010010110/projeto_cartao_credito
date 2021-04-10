@@ -1,7 +1,7 @@
 <template>
     <v-main>
-        <v-container fluid>
-            <v-row class="align-center justify-center">
+        <v-container class="fill-height" fluid>
+            <v-row class="fill-height align-center justify-center">
                 <v-spacer></v-spacer>
                 <v-col cols="4">
                     <v-img
@@ -33,13 +33,3 @@ export default class Auth extends Vue {
 
 }
 </script>
-
-<style lang="scss" scoped>
-div.container {
-    height: 100%;
-
-    div.row {
-        height: 100%;
-    }
-}
-</style>
