@@ -1,8 +1,10 @@
 <?php
-require_once('../utils/utils.php');
 require_once('../controller/connect.php');
 
 global $pdo;
+
+require_once('../utils/utils.php');
+Utils::cors();
 
 $data = file_get_contents('php://input');
 $payload = json_decode($data, TRUE);
