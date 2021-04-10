@@ -17,7 +17,7 @@ $stmt = $pdo->prepare("
 SELECT u.*, p.*, e.* FROM user u 
     INNER JOIN pessoa p ON p.id = u.pessoa_id
     INNER JOIN endereco e ON e.id = p.endereco_id 
-    WHERE u.status = 'I'
+    WHERE u.tipo = 'U' AND u.status = 'I'
 ");
 
 $stmt->execute();
