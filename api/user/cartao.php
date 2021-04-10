@@ -1,10 +1,11 @@
 <?php
-
-require_once('../utils/utils.php');
-require_once('../utils/session_util.php');
-require_once('../controller/connect.php');
+require_once('../../utils/connect.php');
 
 global $pdo;
+
+require_once('../../utils/session_util.php');
+require_once('../../utils/utils.php');
+Utils::cors();
 
 $data = file_get_contents('php://input');
 $payload = json_decode($data, TRUE);
@@ -22,6 +23,7 @@ if (!array_key_exists('status', $payload)) {
 }
 
 $email = $_SESSION['user'];
+
 $cartao_id = $payload['cartao_id'];
 $status = $payload['status'];
 
