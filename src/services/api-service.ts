@@ -27,6 +27,10 @@ export class ApiService {
         return axios.get('/api/user/me.php');
     }
 
+    public static getCartoes() {
+        return axios.get('/api/user/cartao/cartoes.php');
+    }
+
 }
 
 export class Cadastro {

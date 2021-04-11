@@ -34,12 +34,18 @@ import Component from 'vue-class-component'
 
 import CartaoComponent from '@/components/Cartao.vue'
 
-import { Cartao } from '@/services/api-service'
+import { ApiService, Cartao } from '@/services/api-service'
 
 @Component({ components: { CartaoComponent } })
 export default class Cartoes extends Vue {
 
     private cartoes: Cartao[] = [];
+
+    private mounted(): void {
+        ApiService.getCartoes().then(({ data }) =>
+            this.cartoes = data as Cartao[]
+        );
+    }
 
 }
 </script>
