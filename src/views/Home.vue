@@ -21,18 +21,42 @@
             </v-list>
 
             <v-list nav dense>
-                <v-list-item link :to="{ name: 'Faturas' }">
-                    <v-list-item-icon>
-                        <v-icon>mdi-file-document-outline</v-icon>
-                    </v-list-item-icon>
-                    <v-list-item-title>Faturas</v-list-item-title>
-                </v-list-item>
-                <v-list-item link :to="{ name: 'Cartoes' }">
-                    <v-list-item-icon>
-                        <v-icon>mdi-credit-card-outline</v-icon>
-                    </v-list-item-icon>
-                    <v-list-item-title>Cartões</v-list-item-title>
-                </v-list-item>
+                <template v-if="usuario.tipo_usuario === 'C'">
+                    <v-list-item link :to="{ name: 'Faturas' }">
+                        <v-list-item-icon>
+                            <v-icon>mdi-file-document-outline</v-icon>
+                        </v-list-item-icon>
+                        <v-list-item-title>Faturas</v-list-item-title>
+                    </v-list-item>
+                    <v-list-item link :to="{ name: 'Cartoes' }">
+                        <v-list-item-icon>
+                            <v-icon>mdi-credit-card-outline</v-icon>
+                        </v-list-item-icon>
+                        <v-list-item-title>Cartões</v-list-item-title>
+                    </v-list-item>
+                </template>
+                <template v-if="usuario.tipo_usuario === 'A'">
+                    <v-list-item link :to="{ name: 'Funcionarios' }">
+                        <v-list-item-icon>
+                            <v-icon>mdi-account-multiple-plus-outline</v-icon>
+                        </v-list-item-icon>
+                        <v-list-item-title>Funcionários</v-list-item-title>
+                    </v-list-item>
+                </template>
+                <template v-if="usuario.tipo_usuario === 'F'">
+                    <v-list-item link :to="{ name: 'Usuarios' }">
+                        <v-list-item-icon>
+                            <v-icon>mdi-account-check-outline</v-icon>
+                        </v-list-item-icon>
+                        <v-list-item-title>Usuários</v-list-item-title>
+                    </v-list-item>
+                    <v-list-item link :to="{ name: 'Pedidos' }">
+                        <v-list-item-icon>
+                            <v-icon>mdi-checkbox-marked-outline</v-icon>
+                        </v-list-item-icon>
+                        <v-list-item-title>Aguardando aprovação</v-list-item-title>
+                    </v-list-item>
+                </template>
             </v-list>
         </v-navigation-drawer>
 

@@ -2,8 +2,14 @@ import Vue from 'vue'
 import VueRouter, { RouteConfig } from 'vue-router'
 
 import Home from '@/views/Home.vue'
+
 import Faturas from '@/views/user/Faturas.vue'
 import Cartoes from '@/views/user/Cartoes.vue'
+
+import Funcionarios from '@/views/admin/Funcionarios.vue'
+
+import Usuarios from '@/views/funcionario/Usuarios.vue'
+import Pedidos from '@/views/funcionario/Pedidos.vue'
 
 import Auth from '@/views/auth/Auth.vue'
 import Login from '@/views/auth/Login.vue'
@@ -25,6 +31,21 @@ const routes: Array<RouteConfig> = [
                 path: 'cartoes',
                 name: 'Cartoes',
                 component: Cartoes
+            },
+            {
+                path: 'funcionarios',
+                name: 'Funcionarios',
+                component: Funcionarios
+            },
+            {
+                path: 'usuarios',
+                name: 'Usuarios',
+                component: Usuarios
+            },
+            {
+                path: 'pedidos',
+                name: 'Pedidos',
+                component: Pedidos
             }
         ]
     },
