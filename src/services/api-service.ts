@@ -46,23 +46,27 @@ export class Cadastro {
 
 }
 
+export enum TipoUsuario {
+
+    ADMIN = 'A', FUNCIONARIO = 'F', CLIENTE = 'C'
+
+}
+
+export enum TipoPessoa {
+
+    FISICA = 'F', JURIDICA = 'J'
+
+}
+
 export interface Usuario {
 
-    id: string;
-
-    tipo: string;
-
-    status: string;
+    tipo_usuario: TipoUsuario;
 
     email: string;
-
-    senha: string;
 
     renda_mensal: string;
 
     limite: string;
-
-    pessoa_id: string;
 
     nome: string;
 
@@ -70,10 +74,52 @@ export interface Usuario {
 
     telefone: string;
 
-    endereco_id: string;
+    tipo_pessoa: TipoPessoa;
 
     cep: string;
 
     numero: string;
+
+}
+
+export enum TipoCartao {
+
+    DEBITO = 'D', CREDITO = 'C'
+
+}
+
+export enum StatusCartao {
+
+    ATIVO = 'A', BLOQUEADO = 'B', CANCELADO = 'C'
+
+}
+
+export enum CategoriaCartao {
+
+    NACIONAL = 'N', INTERNACIONAL = 'I'
+
+}
+
+export interface Cartao {
+
+    id: string;
+
+    tipo: TipoCartao;
+
+    status: StatusCartao;
+
+    numero: string;
+
+    data_emissao: string;
+
+    validade: string;
+
+    titular: string;
+
+    categoria: CategoriaCartao;
+
+    bandeira: string;
+
+    variante: string;
 
 }
