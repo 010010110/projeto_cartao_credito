@@ -34,7 +34,7 @@
             <v-stepper-content class="pa-6" step="2">
                 <v-row>
                     <v-col cols="6" class="pb-0">
-                        <v-select v-model="cadastro.tipo" :items="pessoa" label="Tipo"></v-select>
+                        <v-select v-model="cadastro.tipo" :items="d_pessoa" label="Tipo"></v-select>
                     </v-col>
                     <v-col cols="6" class="pb-0">
                         <v-text-field v-model="cadastro.documento" label="Documento" required></v-text-field>
@@ -94,11 +94,6 @@ export default class CadastroComponent extends Vue {
 
     private step: number = 1;
     private cadastro: Cadastro = new Cadastro();
-
-    private pessoa: { text: string, value: string }[] = [
-        { text: 'Física', value: 'F' },
-        { text: 'Jurídica', value: 'J' }
-    ];
 
     private cancelar(): void {
         this.$router.push({ name: 'Login' });

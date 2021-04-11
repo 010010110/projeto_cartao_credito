@@ -33,6 +33,28 @@ export class ApiService {
 
 }
 
+export interface Pessoa {
+
+    nome: string;
+
+    documento: string;
+
+    telefone: string;
+
+    tipo: TipoPessoa;
+
+    endereco: Endereco;
+
+}
+
+export interface Endereco {
+
+    cep: string;
+
+    numero: string;
+
+}
+
 export class Cadastro {
 
     private email: string = '';
@@ -94,13 +116,23 @@ export enum TipoCartao {
 
 export enum StatusCartao {
 
-    ATIVO = 'A', BLOQUEADO = 'B', CANCELADO = 'C'
+    ATIVO = 'A', BLOQUEADO = 'B', CANCELADO = 'C', PENDENTE = 'P'
 
 }
 
 export enum CategoriaCartao {
 
     NACIONAL = 'N', INTERNACIONAL = 'I'
+
+}
+
+export interface Bandeira {
+
+    id: string;
+
+    nome: string;
+
+    variante?: string;
 
 }
 
@@ -122,7 +154,7 @@ export interface Cartao {
 
     categoria: CategoriaCartao;
 
-    bandeira: string;
+    bandeira: Bandeira['id'];
 
     variante: string;
 
