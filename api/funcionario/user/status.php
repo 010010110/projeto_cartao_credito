@@ -1,10 +1,10 @@
 <?php
-require_once('../../../utils/connect.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/utils/connect.php');
 
 global $pdo;
 
-require_once('../../../utils/session_util.php');
-require_once('../../../utils/utils.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/utils/session_util.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/utils/utils.php');
 Utils::cors();
 
 if ($_SESSION['tipo'] == "U") {
@@ -12,7 +12,6 @@ if ($_SESSION['tipo'] == "U") {
     http_response_code(403);
     exit();
 }
-
 
 
 $data = file_get_contents('php://input');

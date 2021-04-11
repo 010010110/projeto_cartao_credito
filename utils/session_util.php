@@ -1,4 +1,6 @@
 <?php
+require_once($_SERVER['DOCUMENT_ROOT'] . '/utils/utils.php');
+
 session_start();
 
 if (empty($_SESSION['login']) || !$_SESSION['login']) {

@@ -1,9 +1,9 @@
 <?php
-require_once('../../utils/connect.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/utils/connect.php');
 
 global $pdo;
 
-require_once('../../utils/utils.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/utils/utils.php');
 Utils::cors();
 
 $data = file_get_contents('php://input');
