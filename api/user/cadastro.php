@@ -41,7 +41,7 @@ $st->bindParam(':endereco_id', $endereco_id);
 $st->execute();
 $pessoa_id = $pdo->lastInsertId('pessoa');
 
-$st = $pdo->prepare("INSERT INTO user(tipo, status, email, senha, renda_mensal, limite, pessoa_id) VALUES('U', 'I', :email, :senha, :renda_mensal, :limite, :pessoa_id)");
+$st = $pdo->prepare("INSERT INTO user(tipo, status, email, senha, renda_mensal, limite, pessoa_id) VALUES('C', 'I', :email, :senha, :renda_mensal, :limite, :pessoa_id)");
 $st->bindParam(':email', $email);
 $st->bindParam(':senha', $senha);
 $st->bindParam(':renda_mensal', $renda_mensal);
