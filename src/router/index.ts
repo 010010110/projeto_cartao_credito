@@ -17,7 +17,7 @@ const routes: Array<RouteConfig> = [
         component: Home,
         children: [
             {
-                path: 'faturas',
+                path: '',
                 name: 'Faturas',
                 component: Faturas
             },
