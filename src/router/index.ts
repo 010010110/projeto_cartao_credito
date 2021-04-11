@@ -2,8 +2,8 @@ import Vue from 'vue'
 import VueRouter, { RouteConfig } from 'vue-router'
 
 import Home from '@/views/Home.vue'
-import Faturas from '@/views/home/Faturas.vue'
-import Cartoes from '@/views/home/Cartoes.vue'
+import Faturas from '@/views/user/Faturas.vue'
+import Cartoes from '@/views/user/Cartoes.vue'
 
 import Auth from '@/views/auth/Auth.vue'
 import Login from '@/views/auth/Login.vue'
@@ -17,7 +17,7 @@ const routes: Array<RouteConfig> = [
         component: Home,
         children: [
             {
-                path: '',
+                path: 'faturas',
                 name: 'Faturas',
                 component: Faturas
             },
