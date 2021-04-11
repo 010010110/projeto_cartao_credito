@@ -10,17 +10,7 @@ Utils::cors();
 $data = file_get_contents('php://input');
 $payload = json_decode($data, TRUE);
 
-if (!array_key_exists('cartao_id', $payload)) {
-    Utils::json(['message' => "Parâmetro 'cartao_id' não informado", 'error' => true]);
-
-    exit();
-}
-
-if (!array_key_exists('status', $payload)) {
-    Utils::json(['message' => "Parâmetro 'status' não informado", 'error' => true]);
-
-    exit();
-}
+Utils::validar(['cartao_id', 'status'], $payload);
 
 $user_id = $_SESSION['id'];
 

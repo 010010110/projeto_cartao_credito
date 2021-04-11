@@ -10,6 +10,8 @@ Utils::cors();
 $data = file_get_contents('php://input');
 $payload = json_decode($data, TRUE);
 
+Utils::validar(['cep', 'numero', 'telefone', 'renda_mensal'], $payload);
+
 $email = $_SESSION['user'];
 
 $cep = $payload['cep'];

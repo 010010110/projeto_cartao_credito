@@ -12,7 +12,7 @@ class Utils
     public static function validar(array $keys, array $object)
     {
         foreach ($keys as &$key) {
-            if (!array_key_exists($key, $object)) {
+            if (!array_key_exists($key, $object) || is_null($object[$key])) {
                 Utils::json(['message' => "Parâmetro '$key' não informado", 'error' => true]);
 
                 exit();
