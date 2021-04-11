@@ -37,3 +37,9 @@ export default class App extends Vue {
 
 }
 </script>
+
+<style lang="scss">
+.v-snack {
+    z-index: 100 !important;
+}
+</style>
