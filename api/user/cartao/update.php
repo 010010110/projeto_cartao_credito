@@ -5,7 +5,6 @@ global $pdo;
 
 require_once($_SERVER['DOCUMENT_ROOT'] . '/utils/session_util.php');
 require_once($_SERVER['DOCUMENT_ROOT'] . '/utils/utils.php');
-Utils::cors();
 
 $data = file_get_contents('php://input');
 $payload = json_decode($data, TRUE);

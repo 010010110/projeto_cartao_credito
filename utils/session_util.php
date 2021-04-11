@@ -1,5 +1,6 @@
 <?php
 require_once($_SERVER['DOCUMENT_ROOT'] . '/utils/utils.php');
+Utils::cors();
 
 session_start();
 

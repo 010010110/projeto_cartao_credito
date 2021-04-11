@@ -5,7 +5,6 @@ global $pdo;
 
 require_once($_SERVER['DOCUMENT_ROOT'] . '/utils/session_util.php');
 require_once($_SERVER['DOCUMENT_ROOT'] . '/utils/utils.php');
-Utils::cors();
 
 $user_id = $_SESSION['id'];
 
