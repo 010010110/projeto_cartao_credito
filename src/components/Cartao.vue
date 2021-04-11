@@ -2,13 +2,16 @@
     <div class="cartao primary rounded-lg">
         <div class="overlay" />
         <div class="content d-flex flex-column justify-space-between pa-4">
-            <span class="headline font-weight-bold white--text text-center" v-text="numero" />
+            <span
+                class="headline font-weight-bold white--text text-center"
+                v-text="card(cartao.numero)"
+            />
             <div class="white--text">
                 <div class="d-flex justify-space-between">
-                    <span v-text="data" />
-                    <span v-text="validade" />
+                    <span v-text="shorten(cartao.data_emissao)" />
+                    <span v-text="shorten(cartao.validade)" />
                 </div>
-                <span class="subtitle-1 text-uppercase" v-text="titular" />
+                <span class="subtitle-1 text-uppercase" v-text="cartao.titular" />
             </div>
         </div>
     </div>
@@ -18,20 +21,13 @@
 import Vue from 'vue'
 import { Component, Prop } from 'vue-property-decorator'
 
+import { Cartao } from '@/services/api-service'
+
 @Component
-export default class Cartao extends Vue {
+export default class CartaoComponent extends Vue {
 
     @Prop({ required: true })
-    private numero!: string;
-
-    @Prop({ required: true })
-    private data!: string;
-
-    @Prop({ required: true })
-    private validade!: string;
-
-    @Prop({ required: true })
-    private titular!: string;
+    private cartao!: Cartao;
 
 }
 </script>

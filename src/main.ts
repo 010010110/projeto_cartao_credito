@@ -21,8 +21,32 @@ Vue.mixin({
         d_cartao_categoria: [
             { text: 'Nacional', value: 'N' },
             { text: 'Internacional', value: 'I' },
-        ]
-    })
+        ],
+        d_status_cartao: {
+            'A': { text: 'Ativado', class: 'success--text' },
+            'P': { text: 'Pendente de aprovação', class: 'warning--text' },
+            'B': { text: 'Bloqueado', class: 'grey--text' },
+            'C': { text: 'Cancelado', class: 'error--text' }
+        }
+    }),
+    methods: {
+        shorten(data: string) {
+            if (data && data.length) {
+                return new Intl.DateTimeFormat(navigator.language, {
+                    month: '2-digit', year: '2-digit'
+                }).format(new Date(data));
+            }
+
+            return '';
+        },
+        card(number: string) {
+            if (number && number.length) {
+                return String(number).replace(/(\d{4})/g, '$1 ').trim();
+            }
+
+            return '';
+        }
+    }
 });
 
 new Vue({ router, vuetify, render: h => h(App) }).$mount('#app');
