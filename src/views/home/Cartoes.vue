@@ -1,6 +1,7 @@
 <template>
     <div class="fill-height" style="width: 100%">
-        <div class="display-1 font-weight-bold text-center pa-4">Seus cartões</div>
+        <CadastroCartao></CadastroCartao>
+
         <v-row v-if="cartoes.length">
             <v-col v-for="(cartao, i) in cartoes" :key="i" class="pa-2" cols="6">
                 <v-card>
@@ -24,7 +25,11 @@
                 </v-card>
             </v-col>
         </v-row>
-        <div class="subtitle-1 grey--text text-center" v-else>Não há cartões registrados ainda :(</div>
+        <v-row v-else>
+            <v-col cols="12">
+                <div class="subtitle-1 grey--text text-center">Não há cartões registrados ainda :(</div>
+            </v-col>
+        </v-row>
     </div>
 </template>
 
@@ -33,10 +38,11 @@ import Vue from 'vue'
 import Component from 'vue-class-component'
 
 import CartaoComponent from '@/components/Cartao.vue'
+import CadastroCartao from '@/components/CadastroCartao.vue'
 
 import { ApiService, Cartao } from '@/services/api-service'
 
-@Component({ components: { CartaoComponent } })
+@Component({ components: { CartaoComponent, CadastroCartao } })
 export default class Cartoes extends Vue {
 
     private cartoes: Cartao[] = [];

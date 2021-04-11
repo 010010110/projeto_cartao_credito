@@ -31,6 +31,20 @@ export class ApiService {
         return axios.get('/api/user/cartao/cartoes.php');
     }
 
+    public static getBandeiras() {
+        return axios.get('/api/user/cartao/bandeiras.php');
+    }
+
+    public static cadastrarCartao(tipo: TipoCartao, senha: string, categoria: CategoriaCartao, bandeira: string, pessoa?: Pessoa) {
+        const payload = { tipo, senha, categoria, bandeira };
+
+        if (pessoa !== undefined) {
+            Object.assign(payload, { pessoa });
+        }
+
+        return axios.post('/api/user/cartao/cadastro.php', payload);
+    }
+
 }
 
 export interface Pessoa {
