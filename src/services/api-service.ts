@@ -45,6 +45,14 @@ export class ApiService {
         return axios.post('/api/user/cartao/cadastro.php', payload);
     }
 
+    public static getFaturas() {
+        return axios.get('/api/user/fatura/faturas.php');
+    }
+
+    public static simular(valor: string, descricao: string, parcelas: string) {
+        return axios.post('/api/user/fatura/simular.php', { valor, descricao, parcelas });
+    }
+
 }
 
 export interface Pessoa {
@@ -171,5 +179,27 @@ export interface Cartao {
     bandeira: Bandeira['id'];
 
     variante: string;
+
+}
+
+export interface Item {
+
+    id: string;
+
+    valor: string;
+
+    descricao: string;
+
+    parcelas: string;
+}
+export interface Fatura {
+
+    id: string;
+
+    data: string;
+
+    aberto: string;
+
+    itens: Item[];
 
 }

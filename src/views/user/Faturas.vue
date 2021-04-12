@@ -1,16 +1,22 @@
-<template>
-    <v-row class="fill-height">
-        <v-col class="fill-height py-0" cols="6"></v-col>
-        <v-col class="fill-height py-0" cols="6"></v-col>
-    </v-row>
-</template>
+<template></template>
 
 <script lang="ts">
 import Vue from 'vue'
 import Component from 'vue-class-component'
 
+import { ApiService, Fatura } from '@/services/api-service'
+
 @Component
 export default class Faturas extends Vue {
+
+    private faturas: Fatura[] = [];
+
+    private mounted(): void {
+        ApiService.getFaturas()
+            .then(({ data }) => {
+                this.faturas = data as Fatura[];
+            })
+    }
 
 }
 </script>
