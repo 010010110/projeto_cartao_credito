@@ -72,7 +72,7 @@
 import Vue from 'vue'
 import { Component } from 'vue-property-decorator'
 
-import { ApiService, Usuario } from '@/services/api-service'
+import { ApiService, TipoUsuario, Usuario } from '@/services/api-service'
 
 @Component
 export default class Home extends Vue {
@@ -88,6 +88,20 @@ export default class Home extends Vue {
     private async mounted(): Promise<void> {
         const { data } = await ApiService.getUser();
         this.usuario = data as Usuario;
+
+        if (!this.$route.name) {
+            if (this.usuario.tipo_usuario === TipoUsuario.CLIENTE) {
+                this.$router.push({ name: 'Faturas' });
+            }
+
+            if (this.usuario.tipo_usuario === TipoUsuario.ADMIN) {
+                this.$router.push({ name: 'Funcionarios' });
+            }
+
+            if (this.usuario.tipo_usuario === TipoUsuario.FUNCIONARIO) {
+                this.$router.push({ name: 'Usuarios' });
+            }
+        }
     }
 
 }
