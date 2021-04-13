@@ -1,6 +1,6 @@
 <template>
     <div class="fill-height" style="width: 100%">
-        <v-carousel hide-delimiters light>
+        <v-carousel v-if="faturas.length" hide-delimiters light>
             <v-carousel-item v-for="(fatura, i) in faturas" :key="'f' + i">
                 <v-col class="mx-auto" cols="8">
                     <v-card color="transparent" flat>
@@ -74,6 +74,11 @@
                 </v-col>
             </v-carousel-item>
         </v-carousel>
+        <v-row class="pa-2" v-else>
+            <v-col cols="12">
+                <div class="subtitle-1 grey--text text-center">Não há nenhuma fatura no momento :D</div>
+            </v-col>
+        </v-row>
     </div>
 </template>
 
