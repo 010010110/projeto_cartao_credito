@@ -61,6 +61,10 @@ export class ApiService {
         return axios.get('/api/funcionario/usuarios.php');
     }
 
+    public static updateUser(user_id: string, status: string) {
+        return axios.post('/api/funcionario/user/status.php', { user_id, status });
+    }
+
 }
 
 export interface Pessoa {
@@ -115,6 +119,10 @@ export enum TipoPessoa {
 }
 
 export interface Usuario {
+
+    id?: string;
+
+    status?: string;
 
     tipo_usuario: TipoUsuario;
 

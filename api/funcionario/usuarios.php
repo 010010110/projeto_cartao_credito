@@ -13,7 +13,7 @@ if ($_SESSION['tipo'] == "C") {
 }
 
 $stmt = $pdo->prepare("
-SELECT u.tipo as tipo_usuario, u.status, u.email, u.renda_mensal, u.limite,
+SELECT u.id, u.tipo as tipo_usuario, u.status, u.email, u.renda_mensal, u.limite,
        p.nome, p.documento, p.telefone, p.tipo as tipo_pessoa,
        e.cep, e.numero
 FROM user u
