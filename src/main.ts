@@ -30,9 +30,10 @@ Vue.mixin({
         ],
         d_status_cartao: {
             'A': { text: 'Ativado', class: 'success--text' },
-            'P': { text: 'Pendente de aprovação', class: 'warning--text' },
+            'P': { text: 'Pendente de aprovação', class: 'primary--text' },
             'B': { text: 'Bloqueado', class: 'grey--text' },
-            'C': { text: 'Cancelado', class: 'error--text' }
+            'C': { text: 'Cancelado', class: 'error--text' },
+            'R': { text: 'Recusado', class: 'warning--text' }
         }
     }),
     methods: {
