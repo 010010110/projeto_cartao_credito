@@ -190,7 +190,10 @@ export interface Item {
 
     descricao: string;
 
-    parcelas: string;
+    parcela: string;
+
+    data_compra: string;
+
 }
 export interface Fatura {
 
