@@ -45,6 +45,11 @@ Vue.mixin({
             }
 
             return '';
+        },
+        currency(value: string) {
+            return new Intl.NumberFormat(navigator.language, {
+                style: 'currency', currency: 'BRL'
+            }).format(Number(value));
         }
     }
 });
