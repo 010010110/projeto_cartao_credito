@@ -31,6 +31,7 @@ export class ApiService {
         return axios.get('/api/user/cartao/cartoes.php');
     }
 
+
     public static getBandeiras() {
         return axios.get('/api/user/cartao/bandeiras.php');
     }
@@ -65,6 +66,13 @@ export class ApiService {
         return axios.post('/api/funcionario/user/status.php', { user_id, status });
     }
 
+    public static updateCartao(cartao_id: string, status: string) {
+        return axios.post('/api/funcionario/updateCartao.php', { cartao_id, status });
+    }
+
+    public static getPedidos() {
+        return axios.get('/api/funcionario/cartoes.php');
+    }
 }
 
 export interface Pessoa {

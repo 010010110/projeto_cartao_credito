@@ -39,4 +39,15 @@ class Utils
         }
     }
 
+    public static function randomNum(int $qnt){
+        $text = '';
+        for($i = 0; $i < $qnt; $i++){
+            $num = mt_rand(0, 9999);
+            $num = str_pad($num, 4, '0', STR_PAD_LEFT);
+            $text = $text.$num;
+            
+        }
+        return $text;
+    }
+
 }
