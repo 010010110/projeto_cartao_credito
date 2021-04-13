@@ -49,8 +49,8 @@ export class ApiService {
         return axios.get('/api/user/fatura/faturas.php');
     }
 
-    public static simular(valor: string, descricao: string, parcelas: string) {
-        return axios.post('/api/user/fatura/simular.php', { valor, descricao, parcelas });
+    public static simular(fatura_id: string, valor: string, descricao: string, parcelas: string) {
+        return axios.post('/api/user/fatura/simular.php', { fatura_id, valor, descricao, parcelas });
     }
 
 }

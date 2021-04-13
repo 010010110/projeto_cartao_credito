@@ -43,8 +43,8 @@ $st->execute();
 $item_id = $pdo->lastInsertId('item');
 
 $st = $pdo->prepare("
-INSERT INTO fatura_has_item(fatura_id, item_id, parcela)
-VALUES (:fatura_id, :item_id, 1)
+INSERT INTO fatura_has_item(fatura_id, item_id, data, parcela)
+VALUES (:fatura_id, :item_id, NOW(), 1)
 ");
 
 $st->bindParam(':fatura_id', $fatura_id);

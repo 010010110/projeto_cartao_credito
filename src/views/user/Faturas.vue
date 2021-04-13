@@ -28,13 +28,10 @@
                                             />
                                         </v-col>
                                         <v-col class="pa-0 px-2" cols="2">
-                                            <v-btn
-                                                class="mx-2"
-                                                color="grey lighten-1"
-                                                @click="comment"
-                                                outlined
-                                                block
-                                            >Simular</v-btn>
+                                            <Simulador
+                                                :fatura_id="fatura.id"
+                                                @cadastro="getFaturas"
+                                            ></Simulador>
                                         </v-col>
                                         <v-col class="pa-0 px-2" cols="2">
                                             <v-btn color="success" block>Pagar</v-btn>
@@ -84,9 +81,10 @@
 import Vue from 'vue'
 import Component from 'vue-class-component'
 
+import Simulador from '@/components/Simulador.vue'
 import { ApiService, Fatura } from '@/services/api-service'
 
-@Component
+@Component({ components: { Simulador } })
 export default class Faturas extends Vue {
 
     private faturas: Fatura[] = [];
@@ -113,7 +111,11 @@ export default class Faturas extends Vue {
     ]
 
     private mounted(): void {
-        ApiService.getFaturas()
+        this.getFaturas();
+    }
+
+    private getFaturas(): Promise<Fatura[]> {
+        return ApiService.getFaturas()
             .then(({ data }) =>
                 this.faturas = data as Fatura[]
             );

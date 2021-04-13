@@ -30,6 +30,7 @@ foreach ($faturas as &$fatura) {
         FROM fatura_has_item fhi
             INNER JOIN item i ON fhi.item_id = i.id
         WHERE fhi.fatura_id = :id
+        ORDER BY data DESC
     ");
 
     $st->bindParam(':id', $id);
