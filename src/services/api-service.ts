@@ -198,6 +198,8 @@ export interface Cartao {
 
     titular: string;
 
+    documento: string;
+
     categoria: CategoriaCartao;
 
     bandeira: Bandeira['id'];
