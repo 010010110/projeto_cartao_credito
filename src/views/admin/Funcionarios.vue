@@ -10,28 +10,11 @@
                 </v-btn>
             </v-card-title>
             <v-card-text class="pa-0">
-                <v-list two-line>
-                    <v-list-item
-                        @click="alert('teste')"
-                        v-for="(funcionario, i) in funcionarios"
-                        :key="i"
-                    >
-                        <v-list-item-avatar class="rounded elevation-2" tile>
-                            <v-img :src="avatar()"></v-img>
-                        </v-list-item-avatar>
-
-                        <v-list-item-content>
-                            <v-list-item-title v-text="funcionario.nome"></v-list-item-title>
-                            <v-list-item-subtitle v-html="funcionario.email"></v-list-item-subtitle>
-                        </v-list-item-content>
-
-                        <v-list-item-action>
-                            <v-btn icon>
-                                <v-icon color="error">mdi-close</v-icon>
-                            </v-btn>
-                        </v-list-item-action>
-                    </v-list-item>
-                </v-list>
+                <ListaUsuarios v-bind:usuarios="funcionarios" v-slot="{ usuario }">
+                    <v-col v-if="usuario.status === 'A'" class="pa-0 px-2" cols="2">
+                        <v-btn color="error" outlined block>Inativar</v-btn>
+                    </v-col>
+                </ListaUsuarios>
             </v-card-text>
         </v-card>
     </div>
@@ -41,9 +24,10 @@
 import Vue from 'vue'
 import Component from 'vue-class-component'
 
+import ListaUsuarios from '@/components/ListaUsuarios.vue'
 import { ApiService, Usuario } from '@/services/api-service'
 
-@Component
+@Component({ components: { ListaUsuarios } })
 export default class Funcionarios extends Vue {
 
     private funcionarios: Usuario[] = [];
