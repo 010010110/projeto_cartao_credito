@@ -57,6 +57,10 @@ export class ApiService {
         return axios.get('/api/admin/funcionarios.php');
     }
 
+    public static getUsuarios() {
+        return axios.get('/api/funcionario/usuarios.php');
+    }
+
 }
 
 export interface Pessoa {
