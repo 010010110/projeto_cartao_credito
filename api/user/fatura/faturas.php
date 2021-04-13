@@ -9,30 +9,25 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/utils/utils.php');
 $user_id = $_SESSION['id'];
 
 $st = $pdo->prepare("
-SELECT fatura_id FROM user_has_fatura
-WHERE user_id = :user_id
+SELECT f.* FROM fatura f
+    INNER JOIN user_has_fatura uhf ON f.id = uhf.fatura_id
+WHERE uhf.user_id = :user_id
 ");
 
 $st->bindParam(':user_id', $user_id);
 $st->execute();
 
 $faturas = $st->fetchAll(PDO::FETCH_ASSOC);
-$faturas = array_map(fn($e) => $e['fatura_id'], $faturas);
-$faturas = implode(',', $faturas);
-
-$st = $pdo->prepare("
-SELECT * FROM fatura
-WHERE id IN ($faturas)
-");
-
-$st->execute();
-$faturas = $st->fetchAll(PDO::FETCH_ASSOC);
 
 foreach ($faturas as &$fatura) {
     $id = $fatura['id'];
 
     $st = $pdo->prepare("
-        SELECT i.* FROM fatura_has_item fhi
+        SELECT i.id, i.descricao,
+               (i.valor / i.parcelas) as valor,
+               CONCAT(fhi.parcela, '/', i.parcelas) as parcela,
+               fhi.data as data_compra
+        FROM fatura_has_item fhi
             INNER JOIN item i ON fhi.item_id = i.id
         WHERE fhi.fatura_id = :id
     ");
