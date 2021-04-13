@@ -6,6 +6,16 @@ global $pdo;
 require_once($_SERVER['DOCUMENT_ROOT'] . '/utils/utils.php');
 Utils::cors();
 
+session_start();
+
+if (empty($_SESSION['login']) || !$_SESSION['login']) {
+    session_unset();
+    session_abort();
+    session_write_close();
+
+    header_remove('Set-Cookie');
+}
+
 $data = file_get_contents('php://input');
 $payload = json_decode($data, TRUE);
 
@@ -24,14 +34,22 @@ $renda_mensal = $payload['renda'];
 $cep = $payload['cep'];
 $numero = $payload['numero'];
 
-$st = $pdo->prepare("INSERT INTO endereco(cep, numero) VALUES(:cep, :numero);");
+$st = $pdo->prepare("
+INSERT INTO endereco(cep, numero)
+VALUES(:cep, :numero);
+");
+
 $st->bindParam(':cep', $cep);
 $st->bindParam(':numero', $numero);
 
 $st->execute();
 $endereco_id = $pdo->lastInsertId('endereco');
 
-$st = $pdo->prepare("INSERT INTO pessoa(nome, documento, telefone, tipo, endereco_id) VALUES(:nome, :documento, :telefone, :tipo, :endereco_id);");
+$st = $pdo->prepare("
+INSERT INTO pessoa(nome, documento, telefone, tipo, endereco_id)
+VALUES(:nome, :documento, :telefone, :tipo, :endereco_id);
+");
+
 $st->bindParam(':nome', $nome);
 $st->bindParam(':documento', $documento);
 $st->bindParam(':telefone', $telefone);
@@ -41,7 +59,21 @@ $st->bindParam(':endereco_id', $endereco_id);
 $st->execute();
 $pessoa_id = $pdo->lastInsertId('pessoa');
 
-$st = $pdo->prepare("INSERT INTO user(tipo, status, email, senha, renda_mensal, limite, pessoa_id) VALUES('C', 'I', :email, :senha, :renda_mensal, :limite, :pessoa_id)");
+$tipo_usuario = 'C';
+
+if (!empty($_SESSION['tipo'])) {
+    if ($_SESSION['tipo'] == 'A') {
+        $tipo_usuario = 'F';
+    }
+}
+
+$st = $pdo->prepare("
+INSERT INTO user(tipo, status, email, senha, renda_mensal, limite, pessoa_id)
+VALUES(:tipo_usuario, 'I', :email, :senha, :renda_mensal, :limite, :pessoa_id)
+");
+
+$st->bindParam(':tipo_usuario', $tipo_usuario);
+
 $st->bindParam(':email', $email);
 $st->bindParam(':senha', $senha);
 $st->bindParam(':renda_mensal', $renda_mensal);

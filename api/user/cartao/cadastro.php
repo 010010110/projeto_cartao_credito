@@ -81,4 +81,4 @@ $st->bindParam(':pessoa_id', $pessoa_id);
 
 $st->execute();
 
-Utils::json(['message' => 'Cartão registrado com sucesso']);
+Utils::json(['message' => 'Cartão requisitado com sucesso!']);

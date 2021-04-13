@@ -31,7 +31,6 @@ export class ApiService {
         return axios.get('/api/user/cartao/cartoes.php');
     }
 
-
     public static getBandeiras() {
         return axios.get('/api/user/cartao/bandeiras.php');
     }
@@ -63,16 +62,17 @@ export class ApiService {
     }
 
     public static updateUser(user_id: string, status: string) {
-        return axios.post('/api/funcionario/user/status.php', { user_id, status });
+        return axios.post('/api/funcionario/user/update.php', { user_id, status });
     }
 
     public static updateCartao(cartao_id: string, status: string) {
-        return axios.post('/api/funcionario/updateCartao.php', { cartao_id, status });
+        return axios.post('/api/funcionario/user/cartao/update.php', { cartao_id, status });
     }
 
     public static getPedidos() {
-        return axios.get('/api/funcionario/cartoes.php');
+        return axios.get('/api/funcionario/user/cartoes.php');
     }
+
 }
 
 export interface Pessoa {
