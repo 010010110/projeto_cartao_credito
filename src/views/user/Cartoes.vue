@@ -1,5 +1,5 @@
 <template>
-    <div class="lista fill-height" style="width: 100%">
+    <div class="lista fill-height pa-4" style="width: 100%">
         <CadastroCartao></CadastroCartao>
 
         <v-row v-if="cartoes.length">
