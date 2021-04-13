@@ -8,9 +8,7 @@
             <v-list class="pa-0 primary" dense>
                 <v-list-item class="px-2" link dark>
                     <v-list-item-avatar class="elevation-1 grey lighten-3">
-                        <v-img
-                            src="https://img.icons8.com/pastel-glyph/2x/4a90e2/person-male--v2.png"
-                        ></v-img>
+                        <v-img :src="avatar()"></v-img>
                     </v-list-item-avatar>
 
                     <v-list-item-content>

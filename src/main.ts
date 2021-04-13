@@ -8,6 +8,12 @@ import vuetify from '@/plugins/vuetify'
 
 Vue.config.productionTip = false
 
+const gender = ['men', 'women'];
+
+function random(min: number, max: number): number {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
 Vue.mixin({
     data: () => ({
         d_pessoa: [
@@ -50,6 +56,9 @@ Vue.mixin({
             return new Intl.NumberFormat(navigator.language, {
                 style: 'currency', currency: 'BRL'
             }).format(Number(value));
+        },
+        avatar(): string {
+            return `https://randomuser.me/api/portraits/${gender[random(0, 1)]}/${random(0, 99)}.jpg`;
         }
     }
 });
