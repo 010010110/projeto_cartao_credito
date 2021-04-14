@@ -34,6 +34,11 @@ Vue.mixin({
             'B': { text: 'Bloqueado', class: 'grey--text' },
             'C': { text: 'Cancelado', class: 'error--text' },
             'R': { text: 'Recusado', class: 'warning--text' }
+        },
+        d_fstatus: {
+            'A': { text: 'Aberta', class: 'primary--text' },
+            'F': { text: 'Fechada', class: 'warning--text' },
+            'P': { text: 'Pago', class: 'success--text' }
         }
     }),
     methods: {

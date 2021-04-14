@@ -53,6 +53,10 @@ export class ApiService {
         return axios.post('/api/user/fatura/simular.php', { fatura_id, valor, descricao, parcelas });
     }
 
+    public static pagar(fatura_id: string, valor: string) {
+        return axios.post('/api/user/fatura/pagar.php', { fatura_id, valor });
+    }
+
     public static getFuncionarios() {
         return axios.get('/api/admin/funcionarios.php');
     }

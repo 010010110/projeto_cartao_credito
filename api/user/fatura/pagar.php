@@ -38,11 +38,11 @@ if (!$st->rowCount()) {
 }
 
 $st = $pdo->prepare("
-SELECT COALESCE(SUM(i.valor) - SUM(pf.valor), SUM(i.valor)) as total
+SELECT COALESCE(SUM(i.valor), 0) as total
 FROM fatura_has_item fhi
-    INNER JOIN item i on fhi.item_id = i.id
-    INNER JOIN pagamento_fatura pf on fhi.fatura_id = pf.fatura_id
+    LEFT JOIN item i on fhi.item_id = i.id
 WHERE fhi.fatura_id = :fatura_id
+GROUP BY fhi.fatura_id
 ");
 
 $st->bindParam(':fatura_id', $fatura_id);
@@ -50,6 +50,22 @@ $st->execute();
 
 $total = $st->fetch(PDO::FETCH_ASSOC);
 $total = floatval($total['total']);
+
+$st = $pdo->prepare("
+SELECT COALESCE(SUM(pf.valor), 0) as total
+FROM fatura_has_item fhi
+    LEFT JOIN pagamento_fatura pf on fhi.fatura_id = pf.fatura_id
+WHERE fhi.fatura_id = :fatura_id
+GROUP BY fhi.fatura_id
+");
+
+$st->bindParam(':fatura_id', $fatura_id);
+$st->execute();
+
+$total_pago = $st->fetch(PDO::FETCH_ASSOC);
+$total_pago = floatval($total_pago['total']);
+
+$total = $total - $total_pago;
 
 if ($valor > $total) {
     Utils::json(['message' => "Valor a pagar inválido!", 'error' => true]);
@@ -67,7 +83,7 @@ $st->bindParam(':fatura_id', $fatura_id);
 
 $st->execute();
 
-if ($total === $valor) {
+if ($total == $valor) {
     $st = $pdo->prepare("
         UPDATE fatura SET status = 'P'
         WHERE id = :fatura_id
@@ -77,4 +93,4 @@ if ($total === $valor) {
     $st->execute();
 }
 
-Utils::json(['message' => 'Fatura atualizada com sucesso!']);
+Utils::json(['message' => 'Valor de R$ ' . $valor . ' pago para a fatura']);

@@ -1,19 +1,23 @@
 <template>
     <div class="fill-height" style="width: 100%">
-        <v-carousel v-if="faturas.length" hide-delimiters light>
+        <v-carousel v-if="faturas.length" :show-arrows="faturas.length > 1" hide-delimiters light>
             <v-carousel-item v-for="(fatura, i) in faturas" :key="'f' + i">
                 <v-col class="mx-auto" cols="8">
                     <v-card color="transparent" flat>
                         <v-card-title>Fatura do mês {{ shorten(fatura.data) }}</v-card-title>
 
                         <v-card-text>
-                            <div class="font-weight-bold green--text ml-8 mb-2">Aberta</div>
+                            <div
+                                class="font-weight-bold success--text ml-7 mb-2"
+                                v-bind:class="d_fstatus[fatura.status].class"
+                                v-text="d_fstatus[fatura.status].text"
+                            ></div>
 
                             <v-timeline dense clipped>
                                 <v-timeline-item
                                     fill-dot
                                     class="d-flex align-center mb-12"
-                                    color="green"
+                                    color="success"
                                     large
                                 >
                                     <template v-slot:icon>
@@ -27,14 +31,25 @@
                                                 v-text="currency(fatura.itens.reduce((a, e) => a += Number(e.valor), 0))"
                                             />
                                         </v-col>
-                                        <v-col class="pa-0 px-2" cols="2">
+                                        <v-col
+                                            v-if="fatura.status === 'A'"
+                                            class="pa-0 px-2"
+                                            cols="2"
+                                        >
                                             <Simulador
                                                 :fatura_id="fatura.id"
-                                                @cadastro="getFaturas"
+                                                v-on:sucesso="getFaturas"
                                             ></Simulador>
                                         </v-col>
-                                        <v-col class="pa-0 px-2" cols="2">
-                                            <v-btn color="success" block>Pagar</v-btn>
+                                        <v-col
+                                            v-if="fatura.status !== 'P'"
+                                            class="pa-0 px-2"
+                                            cols="2"
+                                        >
+                                            <PagarFatura
+                                                :fatura_id="fatura.id"
+                                                v-on:sucesso="getFaturas"
+                                            ></PagarFatura>
                                         </v-col>
                                     </v-row>
                                 </v-timeline-item>
@@ -87,9 +102,11 @@ import Vue from 'vue'
 import Component from 'vue-class-component'
 
 import Simulador from '@/components/Simulador.vue'
+import PagarFatura from '@/components/PagarFatura.vue'
+
 import { ApiService, Fatura } from '@/services/api-service'
 
-@Component({ components: { Simulador } })
+@Component({ components: { Simulador, PagarFatura } })
 export default class Faturas extends Vue {
 
     private faturas: Fatura[] = [];
