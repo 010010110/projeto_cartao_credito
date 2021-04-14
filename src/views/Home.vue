@@ -2,6 +2,10 @@
     <div class="fill-height">
         <v-app-bar color="primary" height="56" flat dark app>
             <v-toolbar-title>Empresinha</v-toolbar-title>
+            <v-spacer></v-spacer>
+            <v-btn @click="logout" icon>
+                <v-icon>mdi-exit-to-app</v-icon>
+            </v-btn>
         </v-app-bar>
 
         <v-navigation-drawer permanent expand-on-hover app>
@@ -102,6 +106,13 @@ export default class Home extends Vue {
                 this.$router.push({ name: 'Usuarios' });
             }
         }
+    }
+
+    private logout(): void {
+        ApiService.logout().then(() => {
+            this.$cookies.remove('PHPSESSID');
+            this.$router.push({ name: 'auth' });
+        });
     }
 
 }

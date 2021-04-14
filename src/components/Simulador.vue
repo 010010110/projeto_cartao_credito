@@ -13,7 +13,7 @@
 
         <v-card>
             <v-card-title>
-                <span class="headline">Incluir novo cartão</span>
+                <span class="headline">Simular novo item</span>
             </v-card-title>
 
             <v-form @submit.prevent="submit">

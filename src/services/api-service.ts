@@ -19,6 +19,10 @@ export class ApiService {
         return axios.post('/api/user/login.php', { email, senha });
     }
 
+    public static logout() {
+        return axios.get('/api/user/logout.php');
+    }
+
     public static cadastrar(cadastro: Cadastro) {
         return axios.post('/api/user/cadastro.php', { ...cadastro });
     }
