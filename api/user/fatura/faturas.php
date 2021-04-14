@@ -9,9 +9,12 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/utils/utils.php');
 $user_id = $_SESSION['id'];
 
 $st = $pdo->prepare("
-SELECT f.* FROM fatura f
+SELECT f.*, COALESCE(SUM(pf.valor), 0) as valor_pago
+FROM fatura f
     INNER JOIN user_has_fatura uhf ON f.id = uhf.fatura_id
+    LEFT JOIN pagamento_fatura pf on f.id = pf.fatura_id
 WHERE uhf.user_id = :user_id
+GROUP BY f.id 
 ");
 
 $st->bindParam(':user_id', $user_id);
