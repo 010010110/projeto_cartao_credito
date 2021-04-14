@@ -8,7 +8,7 @@
             <v-list class="pa-0 primary" dense>
                 <v-list-item class="px-2" link dark>
                     <v-list-item-avatar class="elevation-1 grey lighten-3">
-                        <v-img :src="avatar()"></v-img>
+                        <v-img :src="url_avatar"></v-img>
                     </v-list-item-avatar>
 
                     <v-list-item-content>
@@ -76,6 +76,8 @@ import { ApiService, TipoUsuario, Usuario } from '@/services/api-service'
 export default class Home extends Vue {
 
     private usuario: Usuario = {} as Usuario;
+
+    private url_avatar: string = this.avatar();
 
     private beforeMount(): void {
         if (!this.$cookies.isKey('PHPSESSID')) {
