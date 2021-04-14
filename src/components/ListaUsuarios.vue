@@ -1,17 +1,21 @@
 <template>
     <v-list two-line>
-        <v-list-item v-for="(usuario, i) in usuarios" :key="i">
-            <v-list-item-avatar class="rounded elevation-2" tile>
-                <v-img :src="avatar()"></v-img>
-            </v-list-item-avatar>
+        <template v-for="(usuario, i) in usuarios">
+            <v-divider v-if="i > 0" :key="i" inset></v-divider>
 
-            <v-list-item-content>
-                <v-list-item-title v-text="usuario.nome"></v-list-item-title>
-                <v-list-item-subtitle v-html="usuario.email"></v-list-item-subtitle>
-            </v-list-item-content>
+            <v-list-item :key="'u' + i">
+                <v-list-item-avatar class="rounded elevation-2" tile>
+                    <v-img :src="avatar()"></v-img>
+                </v-list-item-avatar>
 
-            <slot v-bind:usuario="usuario"></slot>
-        </v-list-item>
+                <v-list-item-content>
+                    <v-list-item-title v-text="usuario.nome"></v-list-item-title>
+                    <v-list-item-subtitle v-html="usuario.email"></v-list-item-subtitle>
+                </v-list-item-content>
+
+                <slot v-bind:usuario="usuario"></slot>
+            </v-list-item>
+        </template>
     </v-list>
 </template>
 

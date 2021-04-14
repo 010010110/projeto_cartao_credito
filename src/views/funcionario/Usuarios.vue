@@ -5,7 +5,11 @@
                 <span>Usuários</span>
             </v-card-title>
             <v-card-text class="pa-0">
-                <ListaUsuarios v-bind:usuarios="usuarios" v-slot="{ usuario }">
+                <v-text-field class="px-4" label="CPF do usuário" v-model="documento"></v-text-field>
+                <ListaUsuarios
+                    v-slot="{ usuario }"
+                    v-bind:usuarios="usuarios.filter(e => e.documento.startsWith(documento))"
+                >
                     <v-col v-if="usuario.status === 'A'" class="pa-0 px-2" cols="2">
                         <ConfirmDialog
                             title="Deseja inativar o usuário?"
@@ -66,6 +70,8 @@ import { ApiService, Usuario } from '@/services/api-service'
 export default class Usuarios extends Vue {
 
     private usuarios: Usuario[] = [];
+
+    private documento: string = '';
 
     private mounted(): void {
         this.getUsuarios();
