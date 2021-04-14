@@ -6,6 +6,9 @@
                 class="headline font-weight-bold white--text text-center"
                 v-text="card(cartao.numero)"
             />
+            <v-avatar size="64" tile>
+                <v-img :src="require(`@/assets/${cartao.imagem}.png`)"></v-img>
+            </v-avatar>
             <div class="white--text">
                 <div class="d-flex justify-space-between">
                     <span v-text="shorten(cartao.data_emissao)" />

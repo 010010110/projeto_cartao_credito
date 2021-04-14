@@ -1,6 +1,6 @@
 <template>
     <div class="lista fill-height pa-4" style="width: 100%">
-        <CadastroCartao></CadastroCartao>
+        <CadastroCartao v-on:sucesso="getCartoes"></CadastroCartao>
 
         <v-row v-if="cartoes.length">
             <v-col v-for="(cartao, i) in cartoes" :key="i" class="pa-2" cols="6">
@@ -67,6 +67,10 @@ export default class Cartoes extends Vue {
     private cartoes: Cartao[] = [];
 
     private mounted(): void {
+        this.getCartoes();
+    }
+
+    private getCartoes(): void {
         ApiService.getCartoes().then(({ data }) =>
             this.cartoes = data as Cartao[]
         );

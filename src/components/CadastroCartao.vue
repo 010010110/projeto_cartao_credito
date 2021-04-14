@@ -142,9 +142,10 @@ export default class CadastroCartao extends Vue {
             }
 
             return ApiService.cadastrarCartao(this.tipo, this.senha, this.categoria, this.bandeira);
-        })().then(({ data }) =>
+        })().then(({ data }) => {
+            this.$emit('sucesso');
             this.$root.$emit('snackbar', data.message, 3000, 'success')
-        ).catch((error: Error) =>
+        }).catch((error: Error) =>
             this.$root.$emit('snackbar', error.message, 3000, 'error')
         ).finally(() => this.dialog = false);
     }
