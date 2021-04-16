@@ -1,0 +1,26 @@
+{
+    "name": "010010110/projeto_cartao_credito",
+    "description": "Projeto de gerência de cartões",
+    "type": "project",
+    "license": "GPL",
+    "authors": [
+        {
+            "name": "listanegra",
+            "email": "vitormac3@hotmail.com"
+        },
+        {
+            "name": "Gabriel Carneiro",
+            "email": "gabrielarruda08@gmail.com"
+        }
+    ],
+    "autoload": {
+        "classmap": [
+            "./utils",
+            "./controller",
+            "./middleware"
+        ]
+    },
+    "require": {
+        "pecee/simple-router": "4.3.2.1"
+    }
+}
