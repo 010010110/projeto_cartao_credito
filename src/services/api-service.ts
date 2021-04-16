@@ -16,27 +16,27 @@ axios.interceptors.response.use(response => {
 export class ApiService {
 
     public static login(email: string, senha: string) {
-        return axios.post('/api/user/login.php', { email, senha });
+        return axios.post('/login', { email, senha });
     }
 
     public static logout() {
-        return axios.get('/api/user/logout.php');
+        return axios.post('/logout');
     }
 
     public static cadastrar(cadastro: Cadastro) {
-        return axios.post('/api/user/cadastro.php', { ...cadastro });
+        return axios.post('/cadastro', { ...cadastro });
     }
 
     public static getUser() {
-        return axios.get('/api/user/me.php');
+        return axios.get('/user');
     }
 
     public static getCartoes() {
-        return axios.get('/api/user/cartao/cartoes.php');
+        return axios.get('/user/cartoes');
     }
 
     public static getBandeiras() {
-        return axios.get('/api/user/cartao/bandeiras.php');
+        return axios.get('/user/cartoes/bandeiras');
     }
 
     public static cadastrarCartao(tipo: TipoCartao, senha: string, categoria: CategoriaCartao, bandeira: string, pessoa?: Pessoa) {
@@ -46,39 +46,39 @@ export class ApiService {
             Object.assign(payload, { pessoa });
         }
 
-        return axios.post('/api/user/cartao/cadastro.php', payload);
+        return axios.post('/user/cartoes/cadastro', payload);
     }
 
     public static getFaturas() {
-        return axios.get('/api/user/fatura/faturas.php');
+        return axios.get('/user/faturas');
     }
 
     public static simular(fatura_id: string, valor: string, descricao: string, parcelas: string) {
-        return axios.post('/api/user/fatura/simular.php', { fatura_id, valor, descricao, parcelas });
+        return axios.post('/user/faturas', { fatura_id, valor, descricao, parcelas });
     }
 
     public static pagar(fatura_id: string, valor: string) {
-        return axios.post('/api/user/fatura/pagar.php', { fatura_id, valor });
+        return axios.post('/user/faturas/pagar', { fatura_id, valor });
     }
 
     public static getFuncionarios() {
-        return axios.get('/api/admin/funcionarios.php');
+        return axios.get('/admin/funcionarios');
     }
 
     public static getUsuarios() {
-        return axios.get('/api/funcionario/usuarios.php');
+        return axios.get('/funcionario/usuarios');
     }
 
     public static updateUser(user_id: string, status: string) {
-        return axios.post('/api/funcionario/user/update.php', { user_id, status });
+        return axios.post('/funcionario/user', { user_id, status });
     }
 
     public static updateCartao(cartao_id: string, status: string) {
-        return axios.post('/api/funcionario/user/cartao/update.php', { cartao_id, status });
+        return axios.post('/funcionario/cartao', { cartao_id, status });
     }
 
     public static getPedidos() {
-        return axios.get('/api/funcionario/user/cartoes.php');
+        return axios.get('/funcionario/pedidos');
     }
 
 }
