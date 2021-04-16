@@ -1,20 +1,5 @@
 <?php
-require_once($_SERVER['DOCUMENT_ROOT'] . '/utils/connect.php');
-
-global $pdo;
-
-require_once($_SERVER['DOCUMENT_ROOT'] . '/utils/utils.php');
-Utils::cors();
-
-session_start();
-
-if (empty($_SESSION['login']) || !$_SESSION['login']) {
-    session_unset();
-    session_abort();
-    session_write_close();
-
-    header_remove('Set-Cookie');
-}
+$pdo = Database::connection();
 
 $data = file_get_contents('php://input');
 $payload = json_decode($data, TRUE);
@@ -60,12 +45,6 @@ $st->execute();
 $pessoa_id = $pdo->lastInsertId('pessoa');
 
 $tipo_usuario = 'C';
-
-if (!empty($_SESSION['tipo'])) {
-    if ($_SESSION['tipo'] == 'A') {
-        $tipo_usuario = 'F';
-    }
-}
 
 $st = $pdo->prepare("
 INSERT INTO user(tipo, status, email, senha, renda_mensal, limite, pessoa_id)

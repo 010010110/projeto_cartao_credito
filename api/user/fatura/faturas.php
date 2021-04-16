@@ -1,10 +1,5 @@
 <?php
-require_once($_SERVER['DOCUMENT_ROOT'] . '/utils/connect.php');
-
-global $pdo;
-
-require_once($_SERVER['DOCUMENT_ROOT'] . '/utils/session_util.php');
-require_once($_SERVER['DOCUMENT_ROOT'] . '/utils/utils.php');
+$pdo = Database::connection();
 
 $user_id = $_SESSION['id'];
 

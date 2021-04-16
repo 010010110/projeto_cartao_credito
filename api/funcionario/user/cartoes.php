@@ -1,16 +1,5 @@
 <?php
-require_once($_SERVER['DOCUMENT_ROOT'] . '/utils/connect.php');
-
-global $pdo;
-
-require_once($_SERVER['DOCUMENT_ROOT'] . '/utils/session_util.php');
-require_once($_SERVER['DOCUMENT_ROOT'] . '/utils/utils.php');
-
-if ($_SESSION['tipo'] == "C") {
-    Utils::json(['message' => "Sem permissão de acesso!", 'error' => true]);
-    http_response_code(403);
-    exit();
-}
+$pdo = Database::connection();
 
 $stmt = $pdo->prepare("
 SELECT c.id, c.tipo, c.status, c.numero, c.data_emissao, c.validade, c.categoria,

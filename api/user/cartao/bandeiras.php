@@ -1,10 +1,5 @@
 <?php
-require_once($_SERVER['DOCUMENT_ROOT'] . '/utils/connect.php');
-
-global $pdo;
-
-require_once($_SERVER['DOCUMENT_ROOT'] . '/utils/utils.php');
-Utils::cors();
+$pdo = Database::connection();
 
 $st = $pdo->prepare("
 SELECT * FROM bandeira

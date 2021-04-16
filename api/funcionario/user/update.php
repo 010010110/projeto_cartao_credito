@@ -1,17 +1,5 @@
 <?php
-require_once($_SERVER['DOCUMENT_ROOT'] . '/utils/connect.php');
-
-global $pdo;
-
-require_once($_SERVER['DOCUMENT_ROOT'] . '/utils/session_util.php');
-require_once($_SERVER['DOCUMENT_ROOT'] . '/utils/utils.php');
-
-if ($_SESSION['tipo'] !== "F") {
-    Utils::json(['message' => "Sem permissão de acesso!", 'error' => true]);
-    http_response_code(403);
-
-    exit();
-}
+$pdo = Database::connection();
 
 $data = file_get_contents('php://input');
 $payload = json_decode($data, TRUE);

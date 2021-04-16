@@ -9,43 +9,26 @@ class Utils
         echo json_encode($object, JSON_PRETTY_PRINT);
     }
 
-    public static function validar(array $keys, array $object)
+    public static function validar(array $keys, $object)
     {
         foreach ($keys as &$key) {
-            if (!array_key_exists($key, $object) || is_null($object[$key])) {
+            if (is_null($object) || !array_key_exists($key, $object) || is_null($object[$key])) {
                 Utils::json(['message' => "Parâmetro '$key' não informado", 'error' => true]);
+                http_response_code(400);
 
                 exit();
             }
         }
     }
 
-    public static function cors()
+    public static function randomNum(int $qnt)
     {
-        if (isset($_SERVER['HTTP_ORIGIN'])) {
-            header("Access-Control-Allow-Origin: {$_SERVER['HTTP_ORIGIN']}");
-            header('Access-Control-Allow-Credentials: true');
-            header('Access-Control-Max-Age: 0');
-        }
-
-        if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
-            if (isset($_SERVER['HTTP_ACCESS_CONTROL_REQUEST_METHOD']))
-                header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
-
-            if (isset($_SERVER['HTTP_ACCESS_CONTROL_REQUEST_HEADERS']))
-                header("Access-Control-Allow-Headers: {$_SERVER['HTTP_ACCESS_CONTROL_REQUEST_HEADERS']}");
-
-            exit(0);
-        }
-    }
-
-    public static function randomNum(int $qnt){
         $text = '';
-        for($i = 0; $i < $qnt; $i++){
+        for ($i = 0; $i < $qnt; $i++) {
             $num = mt_rand(0, 9999);
             $num = str_pad($num, 4, '0', STR_PAD_LEFT);
-            $text = $text.$num;
-            
+            $text = $text . $num;
+
         }
         return $text;
     }
