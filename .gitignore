@@ -1,7 +1,11 @@
 .DS_Store
 node_modules
-/dist
 package-lock.json
+/dist
+
+# env files
+.env
+.env.backup
 
 # local env files
 .env.local
@@ -22,6 +26,21 @@ pnpm-debug.log*
 *.sln
 *.sw?
 
-/vendor/
+# PHP Unit files
+.phpunit.result.cache
+
+# Composer
 composer.phar
 composer.lock
+/vendor
+
+# Laravel files
+/public/hot
+/public/storage
+/storage/*.key
+
+# docker-compose
+docker-compose.override.yml
+
+Homestead.json
+Homestead.yaml
