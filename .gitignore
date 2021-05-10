@@ -35,8 +35,10 @@ composer.lock
 /vendor
 
 # Laravel files
+/public/js
 /public/hot
 /public/storage
+/public/mix-manifest.json
 /storage/*.key
 
 # docker-compose
