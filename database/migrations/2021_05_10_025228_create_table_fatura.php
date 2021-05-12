@@ -15,7 +15,6 @@ class CreateTableFatura extends Migration
     {
         Schema::create('fatura', function (Blueprint $table) {
             $table->id();
-            $table->date('data');
             $table->enum('status', ['A', 'P']);
             $table->timestamps();
             $table->softDeletes();

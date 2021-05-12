@@ -17,7 +17,7 @@ class CreateTableUserHasFatura extends Migration
             $table->bigInteger('user_id', false, true)->index();
             $table->bigInteger('fatura_id', false, true)->index();
             $table->primary(['user_id', 'fatura_id']);
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('user');
             $table->foreign('fatura_id')->references('id')->on('fatura');
             $table->timestamps();
             $table->softDeletes();

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTablePagamentoFatura extends Migration
+class CreateTablePagamento extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,8 @@ class CreateTablePagamentoFatura extends Migration
      */
     public function up()
     {
-        Schema::create('pagamento_fatura', function (Blueprint $table) {
+        Schema::create('pagamento', function (Blueprint $table) {
             $table->id();
-            $table->dateTime('data');
             $table->decimal('valor', 8, 2, true);
             $table->bigInteger('fatura_id', false, true)->index();
             $table->foreign('fatura_id')->references('id')->on('fatura');
@@ -31,6 +30,6 @@ class CreateTablePagamentoFatura extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pagamento_fatura');
+        Schema::dropIfExists('pagamento');
     }
 }
