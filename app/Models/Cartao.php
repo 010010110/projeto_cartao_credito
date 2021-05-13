@@ -9,6 +9,8 @@ class Cartao extends Model
 {
     use HasFactory;
 
+    protected $table = 'cartao';
+
     protected $fillable = [
         'tipo',
         'status',

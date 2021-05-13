@@ -9,6 +9,8 @@ class Bandeira extends Model
 {
     use HasFactory;
 
+    protected $table = 'bandeira';
+
     protected $fillable = [
         'nome',
         'variante',

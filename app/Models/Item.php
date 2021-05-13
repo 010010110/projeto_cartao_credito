@@ -9,6 +9,8 @@ class Item extends Model
 {
     use HasFactory;
 
+    protected $table = 'item';
+
     protected $fillable = [
         'valor',
         'descricao',
@@ -18,7 +20,5 @@ class Item extends Model
     protected $dates = [
         'created_at'
     ];
-
-
 
 }

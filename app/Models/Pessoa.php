@@ -9,11 +9,14 @@ class Pessoa extends Model
 {
     use HasFactory;
 
+    protected $table = 'pessoa';
+
     protected $fillable = [
         'nome',
         'documento',
         'telefone',
-        'tipo'
+        'tipo',
+        'endereco_id'
     ];
 
     function endereco()

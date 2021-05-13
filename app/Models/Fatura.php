@@ -9,6 +9,8 @@ class Fatura extends Model
 {
     use HasFactory;
 
+    protected $table = 'fatura';
+
     protected $fillable = [
         'status'
     ];
