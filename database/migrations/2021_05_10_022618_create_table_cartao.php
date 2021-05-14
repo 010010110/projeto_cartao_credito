@@ -16,7 +16,7 @@ class CreateTableCartao extends Migration
         Schema::create('cartao', function (Blueprint $table) {
             $table->id();
             $table->enum('tipo', ['C', 'D']);
-            $table->enum('status', ['A', 'R', 'B', 'C']);
+            $table->enum('status', ['A', 'R', 'B', 'C', 'P']);
             $table->string('numero', 16)->unique()->nullable();
             $table->string('senha', 4);
             $table->string('cvv', 3)->nullable();
