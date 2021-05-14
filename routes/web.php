@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,10 +13,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Auth::routes();
-
-Route::group(['middleware' => ['web']], function () {
-    Route::get('/', function () {
-        return view('index');
-    });
+Route::get('/', function () {
+    return view('index');
 });
