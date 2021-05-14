@@ -16,6 +16,8 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
-Route::get('/', function () {
-    return view('index');
+Route::group(['middleware' => ['web']], function () {
+    Route::get('/', function () {
+        return view('index');
+    });
 });
