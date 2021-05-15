@@ -17,6 +17,8 @@ class Cartao extends Model
         'numero',
         'senha',
         'cvv',
+        'data_emissao',
+        'validade',
         'categoria',
         'user_id',
         'pessoa_id',
