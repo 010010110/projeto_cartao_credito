@@ -9,7 +9,7 @@
                 </v-list-item-avatar>
 
                 <v-list-item-content>
-                    <v-list-item-title v-text="usuario.nome"></v-list-item-title>
+                    <v-list-item-title v-text="usuario.pessoa.nome"></v-list-item-title>
                     <v-list-item-subtitle v-html="usuario.email"></v-list-item-subtitle>
                 </v-list-item-content>
 

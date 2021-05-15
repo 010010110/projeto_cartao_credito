@@ -16,14 +16,14 @@
                     </v-list-item-avatar>
 
                     <v-list-item-content>
-                        <v-list-item-title class="title">{{ usuario.nome }}</v-list-item-title>
+                        <v-list-item-title class="title">{{ (usuario.pessoa || {}).nome }}</v-list-item-title>
                         <v-list-item-subtitle>{{ usuario.email }}</v-list-item-subtitle>
                     </v-list-item-content>
                 </v-list-item>
             </v-list>
 
             <v-list nav dense>
-                <template v-if="usuario.tipo_usuario === 'C'">
+                <template v-if="usuario.tipo === 'C'">
                     <v-list-item link :to="{ name: 'Faturas' }">
                         <v-list-item-icon>
                             <v-icon>mdi-file-document-outline</v-icon>
@@ -37,7 +37,7 @@
                         <v-list-item-title>Cartões</v-list-item-title>
                     </v-list-item>
                 </template>
-                <template v-if="usuario.tipo_usuario === 'A'">
+                <template v-if="usuario.tipo === 'A'">
                     <v-list-item link :to="{ name: 'Funcionarios' }">
                         <v-list-item-icon>
                             <v-icon>mdi-account-multiple-plus-outline</v-icon>
@@ -45,7 +45,7 @@
                         <v-list-item-title>Funcionários</v-list-item-title>
                     </v-list-item>
                 </template>
-                <template v-if="usuario.tipo_usuario === 'F'">
+                <template v-if="usuario.tipo === 'F'">
                     <v-list-item link :to="{ name: 'Usuarios' }">
                         <v-list-item-icon>
                             <v-icon>mdi-account-check-outline</v-icon>
@@ -84,7 +84,7 @@ export default class Home extends Vue {
     private url_avatar: string = this.avatar();
 
     private beforeMount(): void {
-        if (!this.$cookies.isKey('PHPSESSID')) {
+        if (!localStorage['token']) {
             this.$router.push({ name: 'Login' });
         }
     }
@@ -94,15 +94,15 @@ export default class Home extends Vue {
         this.usuario = data as Usuario;
 
         if (!this.$route.name) {
-            if (this.usuario.tipo_usuario === TipoUsuario.CLIENTE) {
+            if (this.usuario.tipo === TipoUsuario.CLIENTE) {
                 this.$router.push({ name: 'Faturas' });
             }
 
-            if (this.usuario.tipo_usuario === TipoUsuario.ADMIN) {
+            if (this.usuario.tipo === TipoUsuario.ADMIN) {
                 this.$router.push({ name: 'Funcionarios' });
             }
 
-            if (this.usuario.tipo_usuario === TipoUsuario.FUNCIONARIO) {
+            if (this.usuario.tipo === TipoUsuario.FUNCIONARIO) {
                 this.$router.push({ name: 'Usuarios' });
             }
         }
@@ -110,7 +110,7 @@ export default class Home extends Vue {
 
     private logout(): void {
         ApiService.logout().then(() => {
-            this.$cookies.remove('PHPSESSID');
+            localStorage.removeItem('token');
             this.$router.push({ name: 'auth' });
         });
     }

@@ -8,7 +8,7 @@
                 <v-text-field class="px-4" label="CPF do usuário" v-model="documento"></v-text-field>
                 <ListaUsuarios
                     v-slot="{ usuario }"
-                    v-bind:usuarios="usuarios.filter(e => e.documento.startsWith(documento))"
+                    v-bind:usuarios="usuarios.filter(e => e.pessoa.documento.startsWith(documento))"
                 >
                     <v-col v-if="usuario.status === 'A'" class="pa-0 px-2" cols="2">
                         <ConfirmDialog
@@ -81,7 +81,7 @@ export default class Usuarios extends Vue {
         ApiService.updateUser(usuario.id as string, 'I')
             .then(({ data }) => {
                 return this.getUsuarios().then(() =>
-                    this.$root.$emit('snackbar', data.message, 3000, 'success')
+                    this.$root.$emit('snackbar', 'Usuário inativado com sucesso', 3000, 'success')
                 );
             })
             .catch((error: Error) =>
@@ -93,7 +93,7 @@ export default class Usuarios extends Vue {
         ApiService.updateUser(usuario.id as string, 'R')
             .then(({ data }) => {
                 return this.getUsuarios().then(() =>
-                    this.$root.$emit('snackbar', data.message, 3000, 'success')
+                    this.$root.$emit('snackbar', 'Usuário rejeitado com sucesso', 3000, 'success')
                 );
             })
             .catch((error: Error) =>
@@ -105,7 +105,7 @@ export default class Usuarios extends Vue {
         ApiService.updateUser(usuario.id as string, 'A')
             .then(({ data }) => {
                 return this.getUsuarios().then(() =>
-                    this.$root.$emit('snackbar', data.message, 3000, 'success')
+                    this.$root.$emit('snackbar', 'Usuário ativado com sucesso', 3000, 'success')
                 );
             })
             .catch((error: Error) =>

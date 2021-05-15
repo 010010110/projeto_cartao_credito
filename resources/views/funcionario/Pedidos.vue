@@ -7,7 +7,7 @@
             <v-card-text class="pa-0">
                 <v-text-field class="px-4" label="CPF do titular" v-model="documento"></v-text-field>
                 <ListaCartoes
-                    v-bind:cartoes="pedidos.filter(e => e.documento.startsWith(documento))"
+                    v-bind:cartoes="pedidos.filter(({ pessoa }) => pessoa.documento.startsWith(documento))"
                     v-slot="{ cartao }"
                 >
                     <template v-if="cartao.status === 'A'">
@@ -104,7 +104,7 @@ export default class Pedidos extends Vue {
         ApiService.updateCartao(cartao.id, 'C')
             .then(({ data }) => {
                 return this.getPedidos().then(() =>
-                    this.$root.$emit('snackbar', data.message, 3000, 'success')
+                    this.$root.$emit('snackbar', 'Cartão cancelado com sucesso', 3000, 'success')
                 );
             })
             .catch((error: Error) =>
@@ -116,7 +116,7 @@ export default class Pedidos extends Vue {
         ApiService.updateCartao(cartao.id, 'B')
             .then(({ data }) => {
                 return this.getPedidos().then(() =>
-                    this.$root.$emit('snackbar', data.message, 3000, 'success')
+                    this.$root.$emit('snackbar', 'Cartão bloqueado com sucesso', 3000, 'success')
                 );
             })
             .catch((error: Error) =>
@@ -128,7 +128,7 @@ export default class Pedidos extends Vue {
         ApiService.updateCartao(cartao.id, 'R')
             .then(({ data }) => {
                 return this.getPedidos().then(() =>
-                    this.$root.$emit('snackbar', data.message, 3000, 'success')
+                    this.$root.$emit('snackbar', 'Cartão recusado com sucesso', 3000, 'success')
                 );
             })
             .catch((error: Error) =>
@@ -140,7 +140,7 @@ export default class Pedidos extends Vue {
         ApiService.updateCartao(cartao.id, 'A')
             .then(({ data }) => {
                 return this.getPedidos().then(() =>
-                    this.$root.$emit('snackbar', data.message, 3000, 'success')
+                    this.$root.$emit('snackbar', 'Cartão ativado com sucesso', 3000, 'success')
                 );
             })
             .catch((error: Error) =>

@@ -1,8 +1,16 @@
 import Axios from 'axios'
 
 const axios = Axios.create({
-    baseURL: process.env['VUE_APP_API_ENDPOINT'],
+    baseURL: '/api',
     withCredentials: true
+});
+
+axios.interceptors.request.use((config) => {
+    if (localStorage['token']) {
+        config.headers['Authorization'] = 'Bearer ' + localStorage['token'];
+    }
+
+    return config;
 });
 
 axios.interceptors.response.use(response => {
@@ -11,12 +19,16 @@ axios.interceptors.response.use(response => {
     }
 
     return response;
+}, error => {
+    if (error.response && error.response.data.error) {
+        throw new Error(error.response.data.error);
+    }
 });
 
 export class ApiService {
 
-    public static login(email: string, senha: string) {
-        return axios.post('/login', { email, senha });
+    public static login(email: string, password: string) {
+        return axios.post('/login', { email, password, password_confirmation: password });
     }
 
     public static logout() {
@@ -24,7 +36,7 @@ export class ApiService {
     }
 
     public static cadastrar(cadastro: Cadastro) {
-        return axios.post('/cadastro', { ...cadastro });
+        return axios.post('/cadastro', { ...cadastro, password_confirmation: cadastro.password });
     }
 
     public static getUser() {
@@ -58,7 +70,7 @@ export class ApiService {
     }
 
     public static pagar(fatura_id: string, valor: string) {
-        return axios.post('/user/faturas/pagar', { fatura_id, valor });
+        return axios.put('/user/faturas/pagar', { fatura_id, valor });
     }
 
     public static getFuncionarios() {
@@ -70,11 +82,11 @@ export class ApiService {
     }
 
     public static updateUser(user_id: string, status: string) {
-        return axios.post('/funcionario/user', { user_id, status });
+        return axios.put('/funcionario/user', { user_id, status });
     }
 
     public static updateCartao(cartao_id: string, status: string) {
-        return axios.post('/funcionario/cartao', { cartao_id, status });
+        return axios.put('/funcionario/cartao', { cartao_id, status });
     }
 
     public static getPedidos() {
@@ -107,18 +119,18 @@ export interface Endereco {
 
 export class Cadastro {
 
-    private email: string = '';
-    private senha: string = '';
+    email: string = '';
+    password: string = '';
 
-    private tipo: string = 'F';
-    private documento: string = '';
+    tipo: string = 'F';
+    documento: string = '';
 
-    private nome: string = '';
-    private telefone: string = '';
-    private renda: number = 0;
+    nome: string = '';
+    telefone: string = '';
+    renda: number = 0;
 
-    private cep: string = '';
-    private numero: string = '';
+    cep: string = '';
+    numero: string = '';
 
 }
 
@@ -140,7 +152,7 @@ export interface Usuario {
 
     status?: string;
 
-    tipo_usuario: TipoUsuario;
+    tipo: TipoUsuario;
 
     email: string;
 
@@ -148,17 +160,17 @@ export interface Usuario {
 
     limite: string;
 
-    nome: string;
+    pessoa: {
+        nome: string;
+        documento: string;
+        telefone: string;
+        tipo: TipoPessoa;
+    }
 
-    documento: string;
-
-    telefone: string;
-
-    tipo_pessoa: TipoPessoa;
-
-    cep: string;
-
-    numero: string;
+    endereco: {
+        cep: string;
+        numero: string;
+    }
 
 }
 

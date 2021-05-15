@@ -4,7 +4,7 @@
             <v-carousel-item v-for="(fatura, i) in faturas" :key="'f' + i">
                 <v-col class="mx-auto" cols="8">
                     <v-card color="transparent" flat>
-                        <v-card-title>Fatura do mês {{ shorten(fatura.data) }}</v-card-title>
+                        <v-card-title>Fatura do mês {{ shorten(fatura.created_at) }}</v-card-title>
 
                         <v-card-text>
                             <div
@@ -28,7 +28,7 @@
                                         <v-col class="pa-0 px-2">
                                             <span
                                                 class="title"
-                                                v-text="currency(fatura.itens.reduce((a, e) => a += Number(e.valor), 0))"
+                                                v-text="currency(fatura.item.reduce((a, { valor, parcelas }) => a += Number(valor) / Number(parcelas), 0))"
                                             />
                                         </v-col>
                                         <v-col
@@ -55,7 +55,7 @@
                                 </v-timeline-item>
 
                                 <v-timeline-item
-                                    v-for="(item, j) in fatura.itens"
+                                    v-for="(item, j) in fatura.item"
                                     :key="'i' + j"
                                     class="mb-4"
                                     color="grey"
@@ -67,7 +67,7 @@
                                             <span v-text="item.descricao" />
                                         </v-col>
                                         <v-col class="text-right pa-0" cols="5">
-                                            <span v-text="currency(item.valor)" />
+                                            <span v-text="currency(Number(item.valor) / Number(item.parcelas))" />
                                             <span
                                                 class="caption grey--text mx-2"
                                                 v-text="item.parcela"
@@ -78,7 +78,7 @@
                                         <v-col class="pa-0">
                                             <span
                                                 class="caption grey--text"
-                                                v-text="new Date(item.data_compra).toLocaleDateString()"
+                                                v-text="new Date(item.created_at).toLocaleDateString()"
                                             />
                                         </v-col>
                                     </v-row>

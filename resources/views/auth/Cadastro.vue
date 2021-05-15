@@ -22,7 +22,7 @@
                     </v-col>
                     <v-col cols="12" class="py-0">
                         <v-text-field
-                            v-model="cadastro.senha"
+                            v-model="cadastro.password"
                             label="Senha"
                             type="password"
                             required
@@ -46,7 +46,7 @@
                         <v-text-field v-model="cadastro.telefone" label="Telefone" required></v-text-field>
                     </v-col>
                     <v-col cols="6" class="py-0">
-                        <v-text-field v-model="cadastro.renda" label="Renda Mensal" required></v-text-field>
+                        <v-text-field v-model="cadastro.renda_mensal" label="Renda Mensal" required></v-text-field>
                     </v-col>
                 </v-row>
             </v-stepper-content>
@@ -104,7 +104,7 @@ export default class CadastroComponent extends Vue {
 
         ApiService.cadastrar(this.cadastro)
             .then(({ data }) => {
-                this.$root.$emit('snackbar', data['message'], 3000);
+                this.$root.$emit('snackbar', 'Cadastro realizado com sucesso!', 3000);
                 this.$router.push({ name: 'Login' });
             })
             .catch((error: Error) =>

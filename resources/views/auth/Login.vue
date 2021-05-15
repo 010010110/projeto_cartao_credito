@@ -51,12 +51,13 @@ export default class Login extends Vue {
         this.$root.$emit('overlay', true);
 
         ApiService.login(this.email, this.senha)
-            .then(() =>
-                this.$router.push('/')
-            )
-            .catch((error: Error) =>
+            .then(({ data: { access_token } }) => {
+                localStorage['token'] = access_token;
+                this.$router.push('/');
+            })
+            .catch((error: Error) => {
                 this.$root.$emit('snackbar', error.message, 3000, 'error')
-            )
+            })
             .finally(() =>
                 this.$root.$emit('overlay', false)
             );

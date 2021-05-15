@@ -5,7 +5,7 @@
 
             <v-list-item :key="'c' + i">
                 <v-list-item-avatar tile>
-                    <v-img :src="require(`@/assets/${cartao.imagem}.png`)"></v-img>
+                    <v-img :src="`data:image/jpeg;charset=utf-8;base64, ${cartao.bandeira.imagem}`"></v-img>
                 </v-list-item-avatar>
 
                 <v-list-item-content>
@@ -16,7 +16,7 @@
                             v-bind:class="d_status_cartao[cartao.status].class"
                         ></span>
                         <v-spacer></v-spacer>
-                        <span v-text="cartao.titular"></span>
+                        <span v-text="cartao.pessoa.nome"></span>
                     </v-list-item-title>
                     <v-list-item-subtitle>
                         <span v-text="card(cartao.numero)"></span>

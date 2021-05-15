@@ -27,7 +27,7 @@
                                         >• Cartão {{ d_cartao_categoria.find(e => e.value === cartao.categoria).text }}</span>
                                         <span
                                             class="title"
-                                        >• {{ cartao.bandeira }} {{ cartao.variante }}</span>
+                                        >• {{ cartao.bandeira.nome }} {{ cartao.bandeira.variante }}</span>
                                     </v-col>
                                 </v-row>
                                 <v-row>

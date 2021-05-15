@@ -7,14 +7,14 @@
                 v-text="card(cartao.numero)"
             />
             <v-avatar size="64" tile>
-                <v-img :src="require(`@/assets/${cartao.imagem}.png`)"></v-img>
+                <v-img :src="`data:image/jpeg;charset=utf-8;base64, ${cartao.bandeira.imagem}`"></v-img>
             </v-avatar>
             <div class="white--text">
                 <div class="d-flex justify-space-between">
                     <span v-text="shorten(cartao.data_emissao)" />
                     <span v-text="shorten(cartao.validade)" />
                 </div>
-                <span class="subtitle-1 text-uppercase" v-text="cartao.titular" />
+                <span class="subtitle-1 text-uppercase" v-text="cartao.pessoa.nome" />
             </div>
         </div>
     </div>
