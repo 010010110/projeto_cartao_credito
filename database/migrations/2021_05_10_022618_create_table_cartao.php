@@ -23,6 +23,10 @@ class CreateTableCartao extends Migration
             $table->date('data_emissao')->nullable();
             $table->date('validade')->nullable();
             $table->enum('categoria', ['N', 'I']);
+            $table->bigInteger('user_id', false, true);
+            $table->foreign('user_id')->references('id')->on('user');
+            $table->bigInteger('pessoa_id', false, true);
+            $table->foreign('pessoa_id')->references('id')->on('pessoa');
             $table->bigInteger('bandeira_id', false, true);
             $table->foreign('bandeira_id')->references('id')->on('bandeira');
             $table->timestamps();

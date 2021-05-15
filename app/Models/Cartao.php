@@ -18,6 +18,8 @@ class Cartao extends Model
         'senha',
         'cvv',
         'categoria',
+        'user_id',
+        'pessoa_id',
         'bandeira_id'
     ];
 
@@ -31,9 +33,19 @@ class Cartao extends Model
         'validade' => 'date'
     ];
 
+    function user()
+    {
+        return $this->hasOne('App\Models\User', 'id', 'user_id');
+    }
+
+    function pessoa()
+    {
+        return $this->hasOne('App\Models\Pessoa', 'id', 'pessoa_id');
+    }
+
     function bandeira()
     {
-        return $this->hasOne('App\Models\Bandeira', 'bandeira_id');
+        return $this->hasOne('App\Models\Bandeira', 'id', 'bandeira_id');
     }
 
 }

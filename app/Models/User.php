@@ -37,6 +37,18 @@ class User extends Authenticatable implements JWTSubject
         return $this->belongsTo('App\Models\Pessoa', 'pessoa_id');
     }
 
+    function cartoes()
+    {
+        return $this->hasMany('App\Models\Cartao', 'user_id')
+            ->with('bandeira')->with('pessoa');
+    }
+
+    function faturas()
+    {
+        return $this->belongsToMany('App\Models\Fatura', 'user_has_fatura',
+            'user_id', 'fatura_id');
+    }
+
     public function getJWTIdentifier()
     {
         return $this->getKey();
