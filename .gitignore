@@ -4,8 +4,8 @@ package-lock.json
 /dist
 
 # env files
-.env
 .env.backup
+.env
 
 # local env files
 .env.local
