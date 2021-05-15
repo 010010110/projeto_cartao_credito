@@ -45,8 +45,7 @@ class User extends Authenticatable implements JWTSubject
 
     function faturas()
     {
-        return $this->belongsToMany('App\Models\Fatura', 'user_has_fatura',
-            'user_id', 'fatura_id');
+        return $this->hasMany('App\Models\Fatura', 'user_id');
     }
 
     public function getJWTIdentifier()

@@ -16,7 +16,6 @@ class CreateTableFaturaHasItem extends Migration
         Schema::create('fatura_has_item', function (Blueprint $table) {
             $table->bigInteger('fatura_id', false, true)->index();
             $table->bigInteger('item_id', false, true)->index();
-            $table->dateTime('data');
             $table->integer('parcela', false, true);
             $table->primary(['fatura_id', 'item_id']);
             $table->foreign('fatura_id')->references('id')->on('fatura');

@@ -12,12 +12,24 @@ class Fatura extends Model
     protected $table = 'fatura';
 
     protected $fillable = [
-        'status'
+        'status',
+        'user_id'
     ];
 
     protected $dates = [
         'created_at'
     ];
+
+    function user()
+    {
+        return $this->hasOne('App\Models\User', 'id', 'user_id');
+    }
+
+    function item()
+    {
+        return $this->belongsToMany('App\Models\Item', 'fatura_has_item',
+            'fatura_id', 'item_id');
+    }
 
     function pagamentos()
     {

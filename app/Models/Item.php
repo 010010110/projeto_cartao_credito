@@ -21,4 +21,10 @@ class Item extends Model
         'created_at'
     ];
 
+    function fatura()
+    {
+        return $this->belongsToMany('App\Models\Fatura', 'fatura_has_item',
+            'item_id', 'fatura_id')->with('fatura');
+    }
+
 }

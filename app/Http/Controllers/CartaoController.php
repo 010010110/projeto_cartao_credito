@@ -5,12 +5,12 @@ namespace App\Http\Controllers;
 use App\Models\Bandeira;
 use App\Models\Cartao;
 use App\Models\Endereco;
+use App\Models\Fatura;
 use App\Models\Pessoa;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 
 function cvv()
 {
@@ -120,6 +120,7 @@ class CartaoController extends Controller
         ]);
 
         $cartao = Cartao::query()->where('id', '=', $request['cartao_id'])->first();
+        $user_id = $cartao['user_id'];
 
         if ($request['status'] === 'A' && $cartao['status'] === 'P') {
             $cvv = cvv();
@@ -131,6 +132,18 @@ class CartaoController extends Controller
                 'data_emissao' => Carbon::now()->toDate(),
                 'validade' => Carbon::now()->addYears(6)->toDate()
             ]);
+
+            $faturas = Fatura::query()->where('user_id', '=', $user_id)->count();
+
+            if ($faturas === 0) {
+                $fatura = new Fatura();
+                $fatura->fill([
+                    'status' => 'A',
+                    'user_id' => $user_id
+                ]);
+
+                $fatura->save();
+            }
         }
 
         $cartao->update([

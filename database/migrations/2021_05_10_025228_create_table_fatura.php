@@ -16,6 +16,8 @@ class CreateTableFatura extends Migration
         Schema::create('fatura', function (Blueprint $table) {
             $table->id();
             $table->enum('status', ['A', 'P']);
+            $table->bigInteger('user_id', false, true);
+            $table->foreign('user_id')->references('id')->on('user');
             $table->timestamps();
             $table->softDeletes();
         });
