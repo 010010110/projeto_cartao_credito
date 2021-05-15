@@ -42,7 +42,7 @@ Route::group(['middleware' => ['api', 'auth']], function () {
     });
 
     Route::group(['prefix' => 'funcionario'], function () {
-        Route::get('/usuarios', 'App\Http\Controllers\UserController@getUsers');
+        Route::get('/usuarios', 'App\Http\Controllers\UserController@getClientes');
         Route::get('/pedidos', 'App\Http\Controllers\CartaoController@getPendentes');
         Route::put('/cartao', 'App\Http\Controllers\CartaoController@update');
         Route::put('/user', 'App\Http\Controllers\UserController@update');
